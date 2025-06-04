@@ -1,11 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace BlogicCRM.Models;
 
 public class Institution
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
+    [Key]
+    public required int Id { get; set; }
     
-    // TODO: add relation to contracts
-    // public ICollection<Contact> Contracts { get; set; }
+    [MaxLength(256)]
+    public required string Name { get; set; }
     
+    public ICollection<Contract> Contracts { get; set; } = [];
+
 }

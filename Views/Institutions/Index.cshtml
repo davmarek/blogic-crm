@@ -1,0 +1,28 @@
+@model IEnumerable<Institution>
+
+@{
+    ViewData["Title"] = "Institutions";
+}
+<h2>Institutions</h2>
+
+<div>@Model.Count()</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        
+        <th>@Html.DisplayNameFor(model => model.Id)</th>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
