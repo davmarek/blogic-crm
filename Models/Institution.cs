@@ -5,8 +5,9 @@ namespace BlogicCRM.Models;
 public class Institution
 {
     [Key]
-    public required int Id { get; set; }
+    public int Id { get; set; }
     
+    [Required]
     [MaxLength(256)]
     public required string Name { get; set; }
     

@@ -1,23 +1,31 @@
-@model IEnumerable<Institution>
+@model InstitutionIndexViewModel
 
 @{
     ViewData["Title"] = "Institutions";
 }
 <h2>Institutions</h2>
 
-<div>@Model.Count()</div>
+<form asp-action="Index" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <input type="text" asp-for="NewInstitutionName" placeholder="Some institution name..."
+               class="form-control mb-3"/>
+        <span asp-validation-for="NewInstitutionName" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add institution</button>
+
+</form>
 
 <table class="table">
     <thead>
     <tr>
-        
-        <th>@Html.DisplayNameFor(model => model.Id)</th>
-        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameForInnerType((Institution i) => i.Id)</th>
+        <th>@Html.DisplayNameForInnerType((Institution i) => i.Name)</th>
     </tr>
     </thead>
-    
+
     <tbody>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Institutions)
     {
         <tr>
             <td>@item.Id</td>
