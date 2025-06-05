@@ -7,9 +7,10 @@
 
 <form asp-action="Index" method="post">
     @Html.AntiForgeryToken()
-    <div>
+    <div class="mb-3">
+        <label asp-for="NewInstitutionName" class="form-label">New institution name</label>
         <input type="text" asp-for="NewInstitutionName" placeholder="Some institution name..."
-               class="form-control mb-3"/>
+               class="form-control"/>
         <span asp-validation-for="NewInstitutionName" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Add institution</button>

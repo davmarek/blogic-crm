@@ -40,11 +40,23 @@ public class AppDbContext : DbContext
             b.HasData(
                 new Client
                 {
-                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), FirstName = "Jan", LastName = "Novák", Email = "novak@mail.cz", Phone = "123456789"
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    FirstName = "Jan",
+                    LastName = "Novák",
+                    Email = "novak@mail.cz",
+                    Phone = "123456789",
+                    BirthNumber = "123456/7890",
+                    Birthday = new DateTime(1996, 1, 13)
                 },
                 new Client
                 {
-                    Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), FirstName = "David", LastName = "Marek", Email = "david@gmail.com", Phone = "123456789"
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    FirstName = "David",
+                    LastName = "Marek",
+                    Email = "david@gmail.com",
+                    Phone = "123456789",
+                    BirthNumber = "123456/7890",
+                    Birthday = new DateTime(2002, 4, 20)
                 }
             );
         });

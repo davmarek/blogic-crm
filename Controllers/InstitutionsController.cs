@@ -1,24 +1,16 @@
 using BlogicCRM.Data;
 using BlogicCRM.Models;
+using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogicCRM.Controllers;
 
-public class InstitutionsController : Controller
+public class InstitutionsController(InstitutionRepository repository) : Controller
 {
-    private readonly AppDbContext _context;
-    private readonly ILogger<InstitutionsController> _logger;
-
-    public InstitutionsController(AppDbContext context, ILogger<InstitutionsController> logger)
+    public async Task<IActionResult> Index()
     {
-        _context = context;
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        var institutions = _context.Institutions.ToList();
+        var institutions = await repository.GetAllInstitutionsAsync();
         return View(new InstitutionIndexViewModel
         {
             Institutions = institutions
@@ -27,29 +19,18 @@ public class InstitutionsController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Index(InstitutionIndexViewModel viewModel)
+    public async Task<IActionResult> Index(InstitutionIndexViewModel viewModel)
     {
-        _logger.LogInformation("Storing new institution: {Name}", viewModel.NewInstitutionName);
         if (!ModelState.IsValid)
         {
-            _logger.LogWarning("Model state is invalid for institution: {Name}", viewModel.NewInstitutionName);
-            // log the errors
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                _logger.LogError("Model state error: {ErrorMessage}", error.ErrorMessage);
-            }
-            
             return View("Index", new InstitutionIndexViewModel
             {
-                Institutions = _context.Institutions.ToList(),
+                Institutions = await repository.GetAllInstitutionsAsync(),
                 NewInstitutionName = viewModel.NewInstitutionName
             });
         }
-        
 
-        _context.Institutions.Add(new Institution { Name = viewModel.NewInstitutionName! });
-        _context.SaveChanges();
-
+        await repository.AddInstitutionAsync(new Institution { Name = viewModel.NewInstitutionName });
         return RedirectToAction(nameof(Index));
     }
 }

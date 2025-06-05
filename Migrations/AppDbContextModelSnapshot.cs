@@ -23,6 +23,14 @@ namespace BlogicCRM.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("BirthNumber")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -51,6 +59,8 @@ namespace BlogicCRM.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            BirthNumber = "123456/7890",
+                            Birthday = new DateTime(1996, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "novak@mail.cz",
                             FirstName = "Jan",
                             LastName = "Novák",
@@ -59,6 +69,8 @@ namespace BlogicCRM.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
+                            BirthNumber = "123456/7890",
+                            Birthday = new DateTime(2002, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "david@gmail.com",
                             FirstName = "David",
                             LastName = "Marek",

@@ -1,4 +1,5 @@
 using BlogicCRM.Data;
+using BlogicCRM.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
     
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register services for repositories
+builder.Services.AddScoped<InstitutionRepository>();
+builder.Services.AddScoped<ClientRepository>();
 
 var app = builder.Build();
 
