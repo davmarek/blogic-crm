@@ -17,6 +17,7 @@ builder.Services.AddControllersWithViews();
 // Register services for repositories
 builder.Services.AddScoped<InstitutionRepository>();
 builder.Services.AddScoped<ClientRepository>();
+builder.Services.AddScoped<ContractRepository>();
 
 var app = builder.Build();
 

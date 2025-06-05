@@ -106,6 +106,26 @@ namespace BlogicCRM.Migrations
                     b.HasIndex("InstitutionId");
 
                     b.ToTable("Contracts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            ClientId = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Closed = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            InstitutionId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000002"),
+                            ClientId = new Guid("00000000-0000-0000-0000-000000000002"),
+                            Closed = new DateTime(2025, 7, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            InstitutionId = 2
+                        });
                 });
 
             modelBuilder.Entity("BlogicCRM.Models.Institution", b =>

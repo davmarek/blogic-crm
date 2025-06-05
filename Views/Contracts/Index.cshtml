@@ -1,0 +1,37 @@
+@model IEnumerable<Contract>
+
+@{
+    ViewData["Title"] = "Contracts";
+}
+<h2>Contracts</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
+        <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
+        <th>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</th>
+        <th>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</th>
+        <th>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+                <td>@($"{item.Client.FirstName} {item.Client.LastName}")</td>
+                <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                <td>@Html.DisplayFor(modelItem => item.Effective)</td>
+                <td>@Html.DisplayFor(modelItem => item.Closed)</td>
+                <td>@item.Institution.Name</td>
+                <td>
+                    
+                    <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-link">
+                        Detail
+                    </a>
+                </td>
+        </tr>
+    }
+    </tbody>
+</table>

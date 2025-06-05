@@ -60,5 +60,25 @@ public class AppDbContext : DbContext
                 }
             );
         });
+
+        modelBuilder.Entity<Contract>().HasData(
+            new Contract
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                ClientId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                InstitutionId = 1,
+                Created = DateTime.Today,
+                Effective = DateTime.Today.AddDays(1),
+                Closed = DateTime.Today.AddDays(7),
+            },
+            new Contract
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                ClientId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                InstitutionId = 2,
+                Created = DateTime.Today.AddDays(-3),
+                Effective = DateTime.Today,
+                Closed = DateTime.Today.AddDays(30),
+            });
     }
 }

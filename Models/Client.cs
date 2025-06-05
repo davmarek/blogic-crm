@@ -5,7 +5,7 @@ namespace BlogicCRM.Models;
 
 public class Client
 {
-    [Key] public required Guid Id { get; set; }
+    [Key] public Guid Id { get; set; }
 
     [DisplayName("First Name")]
     [MaxLength(256)]
@@ -21,9 +21,10 @@ public class Client
     [MaxLength(256)] public required string Phone { get; set; }
 
     [DisplayName("Birth Number")]
-    [MaxLength(256)] public required string BirthNumber { get; set; }
+    [MaxLength(256)]
+    public required string BirthNumber { get; set; }
 
-    
+
     [DataType(DataType.Date)] public required DateTime Birthday { get; set; }
 
     public ICollection<Contract> Contracts { get; set; } = [];
