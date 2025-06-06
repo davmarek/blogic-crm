@@ -1,5 +1,9 @@
 :root{
-  --bs-body-font-family: "Figtree", var(--bs-font-sans-serif)
+  --bs-body-font-family: "Figtree", var(--bs-font-sans-serif);
+  
+  --bs-primary: #FE5001;
+  
+  
 }
 
 /*

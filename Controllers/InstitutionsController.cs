@@ -1,4 +1,5 @@
 using BlogicCRM.Models;
+using BlogicCRM.Models.ViewModels;
 using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
 

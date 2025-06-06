@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BlogicCRM.Models;
+namespace BlogicCRM.Models.ViewModels;
 
 public class InstitutionIndexViewModel
 {

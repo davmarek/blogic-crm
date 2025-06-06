@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BlogicCRM.Models;
+using BlogicCRM.Models.ViewModels;
 
 namespace BlogicCRM.Controllers;
 

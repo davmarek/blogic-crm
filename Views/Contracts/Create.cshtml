@@ -1,0 +1,84 @@
+@model BlogicCRM.Models.ViewModels.ContractCreateViewModel
+
+@{
+    ViewData["Title"] = "Contract Show";
+}
+
+<div class="col-5 mx-auto">
+
+    <h2>Create Contract</h2>
+    
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        
+        <div class="mb-3">
+            <label asp-for="ClientId" class="form-label">Client</label>
+
+            <select asp-for="ClientId" id="clientSelect" class="form-control">
+                @foreach (var c in Model.Clients)
+                {
+                    <option value="@c.Id">@($"{c.FirstName} {c.LastName} ({c.Email})")</option>
+                }
+            </select>
+
+            <span asp-validation-for="ClientId" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="AdminId" class="form-label">Contract Administrator</label>
+
+            <select asp-for="AdminId" id="consultantSelect" class="form-control">
+                @foreach (var c in Model.Consultants)
+                {
+                    <option value="@c.Id">@($"{c.FirstName} {c.LastName} ({c.Email})")</option>
+                }
+            </select>
+
+            <span asp-validation-for="AdminId" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="InstitutionId" class="form-label">Institution</label>
+
+            <select asp-for="InstitutionId" id="institutionSelect" class="form-control">
+                @foreach (var i in Model.Institutions)
+                {
+                    <option value="@i.Id">@i.Name</option>
+                }
+            </select>
+
+            <span asp-validation-for="InstitutionId" class="text-danger"></span>
+        </div>
+
+        
+        <div class="mb-3">
+            <label asp-for="Consultants" class="form-label">Consultants</label>
+
+            <select asp-for="Consultants" id="consultantsSelect" class="form-control" multiple="">
+                @foreach (var c in Model.Consultants)
+                {
+                    <option value="@c.Id">@($"{c.FirstName} {c.LastName}")</option>
+                }
+            </select>
+
+            <span asp-validation-for="Consultants" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+
+    </form>
+
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#clientSelect").select2();
+            $("#consultantSelect").select2();
+            $("#institutionSelect").select2();
+            $("#consultantsSelect").select2({
+                multiple: true,
+            });
+        });
+    </script>
+}
