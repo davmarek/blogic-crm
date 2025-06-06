@@ -14,6 +14,13 @@
             @($"{Model.Client.FirstName} {Model.Client.LastName}")
         </a>
     </dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</dt>
+    <dd>
+        <a asp-area="" asp-controller="Consultants" asp-action="Show" asp-route-id="@Model.AdminId">
+            @($"{Model.Admin.FirstName} {Model.Admin.LastName}")
+        </a>
+    </dd>
 
     <dt>@Html.DisplayNameForInnerType((Contract i) => i.Created)</dt>
     <dd>@Html.DisplayFor(model => Model.Created)</dd>
@@ -27,12 +34,7 @@
     <dt>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</dt>
     <dd>@Model.Institution.Name</dd>
     
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</dt>
-    <dd>
-        <a asp-area="" asp-controller="Consultants" asp-action="Show" asp-route-id="@Model.AdminId">
-            @($"{Model.Admin.FirstName} {Model.Admin.LastName}")
-        </a>
-    </dd>
+    
 
     <dt>@Html.DisplayNameForInnerType((Contract i) => i.Consultants)</dt>
     @if (!Model.Consultants.Any())
