@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlogicCRM.Repositories;
 
-public class ClientRepository(AppDbContext context)
+public class ConsultantRepository(AppDbContext context)
 {
-    public async Task<IEnumerable<Client>> GetAllClientsAsync()
+    public async Task<IEnumerable<Consultant>> GetAllConsultantsAsync()
     {
-        return await context.Clients.AsNoTracking().ToListAsync();
+        return await context.Consultants.AsNoTracking().ToListAsync();
     }
 
-    public async Task<Client?> GetClientByIdAsync(Guid id)
+    public async Task<Consultant?> GetConsultantByIdAsync(Guid id)
     {
-        return await context.Clients.FindAsync(id);
+        return await context.Consultants.FindAsync(id);
     }
 
     public async Task AddInstitutionAsync(Institution institution)
@@ -32,10 +32,11 @@ public class ClientRepository(AppDbContext context)
 
     public async Task DeleteInstitutionAsync(Guid id)
     {
-        var client = await GetClientByIdAsync(id);
-        if (client != null)
+        // TODO: Implement for Client
+        var institution = await GetConsultantByIdAsync(id);
+        if (institution != null)
         {
-            context.Clients.Remove(client);
+            context.Consultants.Remove(institution);
             await context.SaveChangesAsync();
         }
     }

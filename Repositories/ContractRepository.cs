@@ -20,6 +20,8 @@ public class ContractRepository(AppDbContext context)
         return await context.Contracts
             .Include(c => c.Client)
             .Include(c => c.Institution)
+            .Include(c => c.Admin)
+            .Include(c => c.Consultants)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 

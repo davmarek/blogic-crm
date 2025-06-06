@@ -5,17 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogicCRM.Controllers;
 
-public class ClientsController(ClientRepository repository) : Controller
+public class ConsultantsController(ConsultantRepository repository) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var clients = await repository.GetAllClientsAsync();
-        return View(clients);
+        var items = await repository.GetAllConsultantsAsync();
+        return View(items);
     }
     
     public async Task<IActionResult> Show(Guid id)
     {
-        var consultant = await repository.GetClientByIdAsync(id);
+        var consultant = await repository.GetConsultantByIdAsync(id);
         if (consultant is null)
         {
             return NotFound();
@@ -23,5 +23,6 @@ public class ClientsController(ClientRepository repository) : Controller
         
         return View(consultant);
     }
+
     
 }

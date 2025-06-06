@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BlogicCRM.Models;
 
-public class Client
+public class Consultant
 {
     [Key] public Guid Id { get; set; }
 
@@ -24,8 +24,10 @@ public class Client
     [MaxLength(256)]
     public required string BirthNumber { get; set; }
 
+
     [DataType(DataType.Date)] public required DateTime Birthday { get; set; }
 
-    // Contract Relationship (Has-Many)
-    public ICollection<Contract> Contracts { get; set; } = [];
+    // Contract Relationship
+    public ICollection<Contract> AdministeredContracts { get; set; } = [];
+    public ICollection<Contract> ParticipatingContracts { get; set; } = [];
 }

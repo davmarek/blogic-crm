@@ -1,0 +1,33 @@
+@model IEnumerable<Consultant>
+
+@{
+    ViewData["Title"] = "Consultants";
+}
+<h2>Consultants</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameForInnerType((Consultant i) => i.FirstName)</th>
+        <th>@Html.DisplayNameForInnerType((Consultant i) => i.LastName)</th>
+        <th>@Html.DisplayNameForInnerType((Consultant i) => i.Email)</th>
+        <th>@Html.DisplayNameForInnerType((Consultant i) => i.Phone)</th>
+        <th>@Html.DisplayNameForInnerType((Consultant i) => i.BirthNumber)</th>
+        <th>@Html.DisplayNameForInnerType((Consultant i) => i.Birthday)</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.BirthNumber</td>
+            <td>@item.Birthday.ToShortDateString()</td>
+        </tr>
+    }
+    </tbody>
+</table>

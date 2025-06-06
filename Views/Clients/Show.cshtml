@@ -1,0 +1,14 @@
+@model Client
+
+@{
+    ViewData["Title"] = "Client Show";
+}
+<h2>Client Show</h2>
+
+<dl>
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.FirstName)</dt>
+    <dd>@Model.FirstName</dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.LastName)</dt>
+    <dd>@Model.LastName</dd>
+</dl>

@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Institution> Institutions { get; set; }
     public DbSet<Client> Clients { get; set; }
+    public DbSet<Consultant> Consultants { get; set; }
     public DbSet<Contract> Contracts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,10 +34,11 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<Client>(b =>
         {
-            b.HasMany(i => i.Contracts)
-                .WithOne(c => c.Client)
-                .HasForeignKey(c => c.ClientId)
+            b.HasMany(e => e.Contracts)
+                .WithOne(e => e.Client)
+                .HasForeignKey(e => e.ClientId)
                 .IsRequired();
+
             b.HasData(
                 new Client
                 {
@@ -61,24 +63,64 @@ public class AppDbContext : DbContext
             );
         });
 
-        modelBuilder.Entity<Contract>().HasData(
-            new Contract
-            {
-                Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-                ClientId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-                InstitutionId = 1,
-                Created = DateTime.Today,
-                Effective = DateTime.Today.AddDays(1),
-                Closed = DateTime.Today.AddDays(7),
-            },
-            new Contract
-            {
-                Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                ClientId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                InstitutionId = 2,
-                Created = DateTime.Today.AddDays(-3),
-                Effective = DateTime.Today,
-                Closed = DateTime.Today.AddDays(30),
-            });
+        modelBuilder.Entity<Consultant>(b =>
+        {
+            b.HasMany(e => e.ParticipatingContracts)
+                .WithMany(e => e.Consultants)
+                .UsingEntity("ContractConsultant");
+
+            b.HasData(
+                new Consultant
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    FirstName = "Juan",
+                    LastName = "Fernandez",
+                    Email = "juank@mail.cz",
+                    Phone = "123456789",
+                    BirthNumber = "123456/7890",
+                    Birthday = new DateTime(1998, 1, 13)
+                },
+                new Consultant
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    FirstName = "Jose",
+                    LastName = "Gomez",
+                    Email = "jose@gmail.com",
+                    Phone = "123456789",
+                    BirthNumber = "123456/7890",
+                    Birthday = new DateTime(2000, 4, 20)
+                }
+            );
+        });
+
+        modelBuilder.Entity<Contract>(b =>
+        {
+            b.HasOne(c => c.Admin)
+                .WithMany(c => c.AdministeredContracts)
+                .HasForeignKey(c => c.AdminId)
+                .IsRequired();
+
+            b.HasData(
+                new Contract
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    ClientId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    AdminId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    InstitutionId = 1,
+                    Created = DateTime.Today,
+                    Effective = DateTime.Today.AddDays(1),
+                    Closed = DateTime.Today.AddDays(7),
+                },
+                new Contract
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    ClientId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    AdminId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    InstitutionId = 2,
+                    Created = DateTime.Today.AddDays(-3),
+                    Effective = DateTime.Today,
+                    Closed = DateTime.Today.AddDays(30),
+                });
+        });
     }
 }
