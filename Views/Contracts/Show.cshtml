@@ -5,25 +5,22 @@
 }
 <h2>Contract</h2>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</th>
-    </tr>
-    </thead>
+<dl>
 
-    <tbody>
+
+    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Client)</dt>
+    <dd>@($"{Model.Client.FirstName} {Model.Client.LastName}")</dd>
+
+    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Created)</dt>
+    <dd>@Html.DisplayFor(model => Model.Created)</dd>
     
-            <tr>
-                <td>@($"{Model.Client.FirstName} {Model.Client.LastName}")</td>
-                <td>@Html.DisplayFor(model => Model.Created)</td>
-                <td>@Html.DisplayFor(model => Model.Effective)</td>
-                <td>@Html.DisplayFor(model => Model.Closed)</td>
-                <td>@Model.Institution.Name</td>
-            </tr>
-    </tbody>
-</table>
+    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</dt>
+    <dd>@Html.DisplayFor(model => Model.Effective)</dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</dt>
+    <dd>@Html.DisplayFor(model => Model.Closed)</dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</dt>
+    <dd>@Model.Institution.Name</dd>
+
+</dl>
