@@ -1,4 +1,4 @@
-using BlogicCRM.Data;
+using BlogicCRM.Database;
 using BlogicCRM.Repositories;
 using Microsoft.EntityFrameworkCore;
 

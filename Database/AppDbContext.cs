@@ -1,7 +1,7 @@
 using BlogicCRM.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlogicCRM.Data;
+namespace BlogicCRM.Database;
 
 public class AppDbContext : DbContext
 {
@@ -39,28 +39,24 @@ public class AppDbContext : DbContext
                 .HasForeignKey(e => e.ClientId)
                 .IsRequired();
 
-            b.HasData(
-                new Client
-                {
-                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-                    FirstName = "Jan",
-                    LastName = "Novák",
-                    Email = "novak@mail.cz",
-                    Phone = "123456789",
-                    BirthNumber = "123456/7890",
-                    Birthday = new DateTime(1996, 1, 13)
-                },
-                new Client
-                {
-                    Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    FirstName = "David",
-                    LastName = "Marek",
-                    Email = "david@gmail.com",
-                    Phone = "123456789",
-                    BirthNumber = "123456/7890",
-                    Birthday = new DateTime(2002, 4, 20)
-                }
-            );
+            var clients = new List<Client>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                clients.Add(new Client
+                    {
+                        Id = Faker.GetGuid(i),
+                        FirstName = Faker.GetFirstName(i),
+                        LastName = Faker.GetLastName(i),
+                        Email = Faker.GetEmail(i),
+                        Phone = Faker.GetPhoneNumber(i),
+                        BirthNumber = "1234567890",
+                        Birthday = DateTime.Today.AddYears(-40+i)
+                    }
+                );
+            }
+
+            b.HasData(clients);
         });
 
         modelBuilder.Entity<Consultant>(b =>
@@ -69,28 +65,24 @@ public class AppDbContext : DbContext
                 .WithMany(e => e.Consultants)
                 .UsingEntity("ContractConsultant");
 
-            b.HasData(
-                new Consultant
-                {
-                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-                    FirstName = "Juan",
-                    LastName = "Fernandez",
-                    Email = "juank@mail.cz",
-                    Phone = "123456789",
-                    BirthNumber = "123456/7890",
-                    Birthday = new DateTime(1998, 1, 13)
-                },
-                new Consultant
-                {
-                    Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    FirstName = "Jose",
-                    LastName = "Gomez",
-                    Email = "jose@gmail.com",
-                    Phone = "123456789",
-                    BirthNumber = "123456/7890",
-                    Birthday = new DateTime(2000, 4, 20)
-                }
-            );
+            var consultants = new List<Consultant>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                consultants.Add(new Consultant
+                    {
+                        Id = Faker.GetGuid(i),
+                        FirstName = Faker.GetFirstName(15 - i),
+                        LastName = Faker.GetLastName(15 - i),
+                        Email = Faker.GetEmail(15 - i),
+                        Phone = Faker.GetPhoneNumber(15 - i),
+                        BirthNumber = "1234567890",
+                        Birthday = DateTime.Today.AddYears(-40+i)
+                    }
+                );
+            }
+
+            b.HasData(consultants);
         });
 
         modelBuilder.Entity<Contract>(b =>
@@ -100,7 +92,40 @@ public class AppDbContext : DbContext
                 .HasForeignKey(c => c.AdminId)
                 .IsRequired();
 
-            b.HasData(
+            /*for( var i = 0; i < 20; i++)
+            {
+                b.HasData(new Contract
+                {
+                    Id = Guid.Parse($"00000000-0000-0000-0000-{i + 1:D12}"),
+                    ClientId = Guid.Parse($"00000000-0000-0000-0000-{(i % 10) + 1:D12}"),
+                    AdminId = Guid.Parse($"00000000-0000-0000-0000-{(i % 10) + 1:D12}"),
+                    InstitutionId = (i % 3) + 1,
+                    Created = DateTime.Today.AddDays(-i),
+                    Effective = DateTime.Today.AddDays(i % 5),
+                    Closed = DateTime.Today.AddDays(i % 10 + 5)
+                });
+            }*/
+
+            var contracts = new List<Contract>();
+
+            for (var i = 0; i < 20; i++)
+            {
+                contracts.Add(new Contract
+                    {
+                        Id = Faker.GetGuid(i),
+                        ClientId = Faker.GetGuid(i % 8),
+                        AdminId = Faker.GetGuid(i % 7),
+                        InstitutionId = (i % 3) + 1,
+                        Created = DateTime.Today.AddDays(-i),
+                        Effective = DateTime.Today.AddDays(i % 5),
+                        Closed = DateTime.Today.AddDays(i % 10 + 5)
+                    }
+                );
+            }
+
+            b.HasData(contracts);
+
+            /*b.HasData(
                 new Contract
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
@@ -120,7 +145,28 @@ public class AppDbContext : DbContext
                     Created = DateTime.Today.AddDays(-3),
                     Effective = DateTime.Today,
                     Closed = DateTime.Today.AddDays(30),
-                });
+                },
+                new Contract
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000003"),
+                    ClientId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    AdminId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    InstitutionId = 1,
+                    Created = DateTime.Today,
+                    Effective = DateTime.Today.AddDays(1),
+                    Closed = DateTime.Today.AddDays(7),
+                },
+                new Contract
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    ClientId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    AdminId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    InstitutionId = 2,
+                    Created = DateTime.Today.AddDays(-3),
+                    Effective = DateTime.Today,
+                    Closed = DateTime.Today.AddDays(30),
+                }
+            );*/
         });
     }
 }

@@ -1,18 +1,20 @@
-@model IEnumerable<Contract>
+@model PaginatedList<Contract>
 
 @{
     ViewData["Title"] = "Contracts";
 }
 <h2>Contracts</h2>
 
-<table class="table">
+<table class="table table-dark table-striped">
     <thead>
     <tr>
         <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
+        <th>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</th>
         <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
         <th>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</th>
         <th>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</th>
         <th>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -20,18 +22,61 @@
     @foreach (var item in Model)
     {
         <tr>
-                <td>@($"{item.Client.FirstName} {item.Client.LastName}")</td>
-                <td>@Html.DisplayFor(modelItem => item.Created)</td>
-                <td>@Html.DisplayFor(modelItem => item.Effective)</td>
-                <td>@Html.DisplayFor(modelItem => item.Closed)</td>
-                <td>@item.Institution.Name</td>
-                <td>
-                    
-                    <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-link">
-                        Detail
-                    </a>
-                </td>
+            <td>@($"{item.Admin.FirstName} {item.Admin.LastName}")</td>
+            <td>@($"{item.Client.FirstName} {item.Client.LastName}")</td>
+            <td>@Html.DisplayFor(modelItem => item.Created)</td>
+            <td>@Html.DisplayFor(modelItem => item.Effective)</td>
+            <td>@Html.DisplayFor(modelItem => item.Closed)</td>
+            <td>@item.Institution.Name</td>
+            <td>
+
+                <a asp-action="Show" asp-route-id="@item.Id">
+                    Detail
+                </a>
+            </td>
         </tr>
     }
     </tbody>
 </table>
+
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+@*<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+>
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+>
+    Next
+</a>*@
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @prevDisabled">
+            <a class="page-link"
+               asp-action="Index"
+               asp-route-pageNumber="@(Model.PageIndex - 1)">
+                Previous
+            </a>
+        </li>
+        <li class="page-item @nextDisabled">
+            <a class="page-link"
+               asp-action="Index"
+               asp-route-pageNumber="@(Model.PageIndex + 1)">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>

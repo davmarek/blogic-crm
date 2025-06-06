@@ -1,4 +1,5 @@
-using BlogicCRM.Data;
+
+using BlogicCRM.Database;
 using BlogicCRM.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,13 +7,13 @@ namespace BlogicCRM.Repositories;
 
 public class ContractRepository(AppDbContext context)
 {
-    public async Task<IEnumerable<Contract>> GetAllContractsAsync()
+    public IQueryable<Contract> GetAllContractsQueryable()
     {
-        return await context.Contracts
-            .Include(c => c.Client)
-            .Include(c => c.Institution)
-            .AsNoTracking()
-            .ToListAsync();
+        return context.Contracts
+                .Include(c => c.Client)
+                .Include(c => c.Admin)
+                .Include(c => c.Institution)
+                .AsNoTracking();
     }
 
     public async Task<Contract?> GetContractByIdAsync(Guid id)

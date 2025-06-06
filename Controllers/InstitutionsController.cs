@@ -1,8 +1,6 @@
-using BlogicCRM.Data;
 using BlogicCRM.Models;
 using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BlogicCRM.Controllers;
 
