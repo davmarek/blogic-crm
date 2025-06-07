@@ -13,7 +13,10 @@ public class ConsultantRepository(AppDbContext context)
 
     public async Task<Consultant?> GetConsultantByIdAsync(Guid id)
     {
-        return await context.Consultants.FindAsync(id);
+        return await context.Consultants
+            .Include(e => e.AdministeredContracts)
+            .Include(e => e.ParticipatingContracts)
+            .FirstOrDefaultAsync(e => e.Id == id);
     }
 
     public async Task AddInstitutionAsync(Institution institution)

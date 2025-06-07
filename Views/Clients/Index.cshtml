@@ -5,29 +5,44 @@
 }
 <h2>Clients</h2>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>@Html.DisplayNameForInnerType((Client i) => i.FirstName)</th>
-        <th>@Html.DisplayNameForInnerType((Client i) => i.LastName)</th>
-        <th>@Html.DisplayNameForInnerType((Client i) => i.Email)</th>
-        <th>@Html.DisplayNameForInnerType((Client i) => i.Phone)</th>
-        <th>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</th>
-        <th>@Html.DisplayNameForInnerType((Client i) => i.Birthday)</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table">
+        <thead>
         <tr>
-            <td>@item.FirstName</td>
-            <td>@item.LastName</td>
-            <td>@item.Email</td>
-            <td>@item.Phone</td>
-            <td>@item.BirthNumber</td>
-            <td>@item.Birthday.ToShortDateString()</td>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.FirstName)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.LastName)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.Email)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.Phone)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.Birthday)</th>
+            <th>Actions</th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.BirthNumber</td>
+                <td>@item.Birthday.ToShortDateString()</td>
+
+                <td>
+                    <a asp-action="Show" asp-route-id="@item.Id" class="icon-link">
+                        <svg class="bi" data-slot="icon" fill="currentColor" viewBox="0 0 16 16"
+                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                  d="M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+                        </svg>
+                        Detail
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

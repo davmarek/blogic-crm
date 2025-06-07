@@ -1,16 +1,25 @@
 @model Consultant
 
 @{
-    ViewData["Title"] = "Consultant Show";
+    ViewData["Title"] = "Consultant Detail";
 }
 
 <b>Consultant</b>
 <h2>@Model.FullName</h2>
 
 <dl>
-    <dt>@Html.DisplayNameForInnerType((Consultant i) => i.FirstName)</dt>
-    <dd>@Model.FirstName</dd>
+    <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Email)</dt>
+    <dd>@Model.Email</dd>
     
-    <dt>@Html.DisplayNameForInnerType((Consultant i) => i.LastName)</dt>
-    <dd>@Model.LastName</dd>
+    <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Phone)</dt>
+    <dd>@Model.Phone</dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Consultant i) => i.BirthNumber)</dt>
+    <dd>@Model.BirthNumber</dd>
+    
+    <dt>Number of contracts (as admin)</dt>
+    <dd>@Model.AdministeredContracts.Count</dd>
+    
+    <dt>Number of contracts (as participant)</dt>
+    <dd>@Model.AdministeredContracts.Count</dd>
 </dl>
