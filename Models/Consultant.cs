@@ -30,4 +30,7 @@ public class Consultant
     // Contract Relationship
     public ICollection<Contract> AdministeredContracts { get; set; } = [];
     public ICollection<Contract> ParticipatingContracts { get; set; } = [];
+    
+    // Computed properties
+    public string FullName => $"{FirstName} {LastName}";
 }

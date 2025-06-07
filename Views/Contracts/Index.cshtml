@@ -28,8 +28,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@($"{item.Admin.FirstName} {item.Admin.LastName}")</td>
-                <td>@($"{item.Client.FirstName} {item.Client.LastName}")</td>
+                <td>@item.Client.FullName</td>
+                <td>@item.Admin.FullName</td>
                 <td>@Html.DisplayFor(modelItem => item.Created)</td>
                 <td>@Html.DisplayFor(modelItem => item.Effective)</td>
                 <td>@Html.DisplayFor(modelItem => item.Closed)</td>

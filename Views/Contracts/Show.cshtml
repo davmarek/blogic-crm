@@ -13,14 +13,14 @@
         <dt>@Html.DisplayNameForInnerType((Contract i) => i.Client)</dt>
         <dd>
             <a asp-area="" asp-controller="Clients" asp-action="Show" asp-route-id="@Model.Client.Id">
-                @($"{Model.Client.FirstName} {Model.Client.LastName}")
+                @Model.Client.FullName
             </a>
         </dd>
 
         <dt>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</dt>
         <dd>
             <a asp-area="" asp-controller="Consultants" asp-action="Show" asp-route-id="@Model.AdminId">
-                @($"{Model.Admin.FirstName} {Model.Admin.LastName}")
+                @Model.Admin.FullName
             </a>
         </dd>
         

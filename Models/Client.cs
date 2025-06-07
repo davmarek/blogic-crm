@@ -28,4 +28,7 @@ public class Client
 
     // Contract Relationship (Has-Many)
     public ICollection<Contract> Contracts { get; set; } = [];
+    
+    // Computed properties
+    public string FullName => $"{FirstName} {LastName}";
 }

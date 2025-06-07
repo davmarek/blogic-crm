@@ -3,12 +3,20 @@
 @{
     ViewData["Title"] = "Client Show";
 }
-<h2>Client Show</h2>
+
+<b>Client</b>
+<h2>@Model.FullName</h2>
 
 <dl>
-    <dt>@Html.DisplayNameForInnerType((Client i) => i.FirstName)</dt>
-    <dd>@Model.FirstName</dd>
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.Email)</dt>
+    <dd>@Model.Email</dd>
     
-    <dt>@Html.DisplayNameForInnerType((Client i) => i.LastName)</dt>
-    <dd>@Model.LastName</dd>
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.Phone)</dt>
+    <dd>@Model.Phone</dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</dt>
+    <dd>@Model.BirthNumber</dd>
+    
+    <dt>Number of contracts</dt>
+    <dd>@Model.Contracts.Count</dd>
 </dl>

@@ -13,7 +13,9 @@ public class ClientRepository(AppDbContext context)
 
     public async Task<Client?> GetClientByIdAsync(Guid id)
     {
-        return await context.Clients.FindAsync(id);
+        return await context.Clients
+            .Include(e => e.Contracts)
+            .FirstOrDefaultAsync(e => e.Id == id);
     }
 
     public async Task AddInstitutionAsync(Institution institution)
