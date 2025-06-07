@@ -3,50 +3,57 @@
 @{
     ViewData["Title"] = "Contract Show";
 }
-<h2>Contract</h2>
 
-<dl>
+    <h2>Contract</h2>
+    <p class="user-select-all text-body-secondary">@Model.Id.ToString()</p>
 
+<div class="row g-5">
 
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Client)</dt>
-    <dd>
-        <a asp-area="" asp-controller="Clients" asp-action="Show" asp-route-id="@Model.Client.Id">
-            @($"{Model.Client.FirstName} {Model.Client.LastName}")
-        </a>
-    </dd>
-    
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</dt>
-    <dd>
-        <a asp-area="" asp-controller="Consultants" asp-action="Show" asp-route-id="@Model.AdminId">
-            @($"{Model.Admin.FirstName} {Model.Admin.LastName}")
-        </a>
-    </dd>
+    <dl class="col-auto">
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Client)</dt>
+        <dd>
+            <a asp-area="" asp-controller="Clients" asp-action="Show" asp-route-id="@Model.Client.Id">
+                @($"{Model.Client.FirstName} {Model.Client.LastName}")
+            </a>
+        </dd>
 
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Created)</dt>
-    <dd>@Html.DisplayFor(model => Model.Created)</dd>
-    
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</dt>
-    <dd>@Html.DisplayFor(model => Model.Effective)</dd>
-    
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</dt>
-    <dd>@Html.DisplayFor(model => Model.Closed)</dd>
-    
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</dt>
-    <dd>@Model.Institution.Name</dd>
-    
-    
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</dt>
+        <dd>
+            <a asp-area="" asp-controller="Consultants" asp-action="Show" asp-route-id="@Model.AdminId">
+                @($"{Model.Admin.FirstName} {Model.Admin.LastName}")
+            </a>
+        </dd>
+        
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</dt>
+        <dd>@Model.Institution.Name</dd>
 
-    <dt>@Html.DisplayNameForInnerType((Contract i) => i.Consultants)</dt>
-    @if (!Model.Consultants.Any())
-    {
-        <dd>Contract has no assigned consultants</dd>
-    }
-    else
-    {
-        @foreach(var consultant in Model.Consultants)
+        
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Consultants)</dt>
+        @if (!Model.Consultants.Any())
         {
-            <dd>@($"{consultant.FirstName} {consultant.LastName}")</dd>
+            <dd>Contract has no assigned consultants</dd>
         }
-    }
+        else
+        {
+            @foreach (var consultant in Model.Consultants)
+            {
+                <dd>@($"{consultant.FirstName} {consultant.LastName}")</dd>
+            }
+        }
+
+    </dl>
     
-</dl>
+    <dl class="col-auto">
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Created)</dt>
+        <dd>@Html.DisplayFor(model => Model.Created)</dd>
+
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</dt>
+        <dd>@Html.DisplayFor(model => Model.Effective)</dd>
+
+        <dt>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</dt>
+        <dd>@Html.DisplayFor(model => Model.Closed)</dd>
+
+        
+    </dl>
+
+</div>

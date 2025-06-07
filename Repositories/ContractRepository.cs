@@ -1,4 +1,3 @@
-
 using BlogicCRM.Database;
 using BlogicCRM.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +9,11 @@ public class ContractRepository(AppDbContext context)
     public IQueryable<Contract> GetAllContractsQueryable()
     {
         return context.Contracts
-                .Include(c => c.Client)
-                .Include(c => c.Admin)
-                .Include(c => c.Institution)
-                .AsNoTracking();
+            .Include(c => c.Client)
+            .Include(c => c.Admin)
+            .Include(c => c.Institution)
+            .OrderByDescending(e => e.CreatedAt)
+            .AsNoTracking();
     }
 
     public async Task<Contract?> GetContractByIdAsync(Guid id)

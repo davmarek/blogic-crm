@@ -5,33 +5,33 @@ namespace BlogicCRM.Models;
 public class Contract
 {
     [Key] public Guid Id { get; set; }
-
-
+    
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:d}")]
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    [Required]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime Created { get; set; }
 
+    [Required]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:d}")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime Effective { get; set; }
 
+    [Required]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:d}")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime Closed { get; set; }
-
-    // Client Relationship (Belongs-To-One)
+    
     public Guid ClientId { get; set; }
-    public Client Client { get; set; } = null!;
-
-    // Institution Relationship (Belongs-To-One)
-    public int InstitutionId { get; set; }
-    public Institution Institution { get; set; } = null!;
-    
-    // Admin (Consultant) Relationship (Belongs-To-One)
     public Guid AdminId { get; set; }
-    public Consultant Admin { get; set; } = null!;
+    public int InstitutionId { get; set; }
+
     
-    // Consultant Relationship (Has-Many)
+    public Client Client { get; set; } = null!;
+    public Consultant Admin { get; set; } = null!;
+    public Institution Institution { get; set; } = null!;
     public ICollection<Consultant> Consultants { get; set; } = [];
     
 }

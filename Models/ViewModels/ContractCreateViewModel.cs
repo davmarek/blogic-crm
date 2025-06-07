@@ -21,11 +21,11 @@ public class ContractCreateViewModel
     
     
     [Required(ErrorMessage = "Date of creation is required.")]
-    public DateTime CreatedDate { get; set; }
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
     
     [Required(ErrorMessage = "Effective date is required.")]
-    public DateTime EffectiveDate { get; set; }
+    public DateTime EffectiveDate { get; set; } = DateTime.Now;
     
     [Required(ErrorMessage = "Closing date is required.")]
-    public DateTime ClosingDate { get; set; }
+    public DateTime ClosingDate { get; set; } = DateTime.Now;
 }
