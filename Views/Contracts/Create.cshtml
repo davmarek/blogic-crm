@@ -1,7 +1,7 @@
 @model BlogicCRM.Models.ViewModels.ContractCreateViewModel
 
 @{
-    ViewData["Title"] = "Contract Show";
+    ViewData["Title"] = "Create Contract";
 }
 
 <div class="col-5 mx-auto">
@@ -12,9 +12,10 @@
         @Html.AntiForgeryToken()
         
         <div class="mb-3">
-            <label asp-for="ClientId" class="form-label">Client</label>
+            <label asp-for="ClientId" class="form-label required">Client</label>
 
-            <select asp-for="ClientId" id="clientSelect" class="form-control">
+            <select asp-for="ClientId" id="clientSelect" class="form-control" required="">
+                <option></option>
                 @foreach (var c in Model.Clients)
                 {
                     <option value="@c.Id">@($"{c.FirstName} {c.LastName} ({c.Email})")</option>
@@ -25,9 +26,10 @@
         </div>
         
         <div class="mb-3">
-            <label asp-for="AdminId" class="form-label">Contract Administrator</label>
+            <label asp-for="AdminId" class="form-label required">Contract Administrator</label>
 
-            <select asp-for="AdminId" id="consultantSelect" class="form-control">
+            <select asp-for="AdminId" id="consultantSelect" class="form-control" required="">
+                <option></option>
                 @foreach (var c in Model.Consultants)
                 {
                     <option value="@c.Id">@($"{c.FirstName} {c.LastName} ({c.Email})")</option>
@@ -38,9 +40,10 @@
         </div>
         
         <div class="mb-3">
-            <label asp-for="InstitutionId" class="form-label">Institution</label>
+            <label asp-for="InstitutionId" class="form-label required">Institution</label>
 
-            <select asp-for="InstitutionId" id="institutionSelect" class="form-control">
+            <select asp-for="InstitutionId" id="institutionSelect" class="form-control" required="">
+                <option></option>
                 @foreach (var i in Model.Institutions)
                 {
                     <option value="@i.Id">@i.Name</option>
@@ -63,6 +66,29 @@
 
             <span asp-validation-for="Consultants" class="text-danger"></span>
         </div>
+        
+        
+        <div class="mb-3">
+            <label asp-for="CreatedDate" class="form-label">Date of creation</label>
+            <input type="date" asp-for="CreatedDate" class="form-control" />
+            <span asp-validation-for="CreatedDate" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="EffectiveDate" class="form-label">Date of creation</label>
+            <input type="date" asp-for="EffectiveDate" class="form-control" />
+            <span asp-validation-for="EffectiveDate" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="ClosingDate" class="form-label">Date of creation</label>
+            <input type="date" asp-for="ClosingDate" class="form-control" />
+            <span asp-validation-for="ClosingDate" class="text-danger"></span>
+        </div>
+        
+        
+        
+        
         <button type="submit" class="btn btn-primary">Create</button>
 
     </form>
@@ -73,9 +99,15 @@
 {
     <script>
         $(document).ready(function () {
-            $("#clientSelect").select2();
-            $("#consultantSelect").select2();
-            $("#institutionSelect").select2();
+            $("#clientSelect").select2({
+                placeholder: "Select a client",
+            });
+            $("#consultantSelect").select2({
+                placeholder: "Select a consultant",
+            });
+            $("#institutionSelect").select2({
+                placeholder: "Select an institution",
+            });
             $("#consultantsSelect").select2({
                 multiple: true,
             });

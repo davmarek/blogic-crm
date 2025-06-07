@@ -5,44 +5,52 @@
 }
 <h2>Contracts</h2>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</th>
-        <th>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
+<div class="mb-3">
+    <a asp-controller="Contracts" asp-action="Create" class="btn btn-primary">Create New Contract</a>
+</div>
 
-    <tbody>
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+
+    <table class="table table-striped ">
+        <thead>
         <tr>
-            <td>@($"{item.Admin.FirstName} {item.Admin.LastName}")</td>
-            <td>@($"{item.Client.FirstName} {item.Client.LastName}")</td>
-            <td>@Html.DisplayFor(modelItem => item.Created)</td>
-            <td>@Html.DisplayFor(modelItem => item.Effective)</td>
-            <td>@Html.DisplayFor(modelItem => item.Closed)</td>
-            <td>@item.Institution.Name</td>
-            <td>
-
-                <a asp-action="Show" asp-route-id="@item.Id" class="icon-link">
-                    <svg class="bi" data-slot="icon" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-                        <path clip-rule="evenodd" fill-rule="evenodd" d="M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                    </svg>
-                    Detail
-                </a>
-            </td>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</th>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</th>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</th>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</th>
+            <th>Actions</th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
 
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@($"{item.Admin.FirstName} {item.Admin.LastName}")</td>
+                <td>@($"{item.Client.FirstName} {item.Client.LastName}")</td>
+                <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                <td>@Html.DisplayFor(modelItem => item.Effective)</td>
+                <td>@Html.DisplayFor(modelItem => item.Closed)</td>
+                <td>@item.Institution.Name</td>
+                <td>
+
+                    <a asp-action="Show" asp-route-id="@item.Id" class="icon-link">
+                        <svg class="bi" data-slot="icon" fill="currentColor" viewBox="0 0 16 16"
+                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                  d="M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+                        </svg>
+                        Detail
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
