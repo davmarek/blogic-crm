@@ -18,6 +18,12 @@
     <dt>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</dt>
     <dd>@Model.BirthNumber</dd>
     
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.Birthday)</dt>
+    <dd>@Html.DisplayFor(model => Model.Birthday)</dd>
+    
+    <dt>@Html.DisplayNameForInnerType((Client i) => i.Age)</dt>
+    <dd>@Model.Age</dd>
+    
     <dt>Number of contracts</dt>
     <dd>@Model.Contracts.Count</dd>
 </dl>

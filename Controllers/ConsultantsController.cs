@@ -24,5 +24,18 @@ public class ConsultantsController(ConsultantRepository repository) : Controller
         return View(consultant);
     }
 
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var consultant = await repository.GetConsultantByIdAsync(id);
+        if (consultant is null)
+        {
+            return NotFound();
+        }
+
+        await repository.DeleteConsultantAsync(consultant);
+        return RedirectToAction(nameof(Index));
+    }
     
 }

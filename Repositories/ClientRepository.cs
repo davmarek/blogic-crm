@@ -32,13 +32,9 @@ public class ClientRepository(AppDbContext context)
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteInstitutionAsync(Guid id)
+    public async Task DeleteClientAsync(Client client)
     {
-        var client = await GetClientByIdAsync(id);
-        if (client != null)
-        {
-            context.Clients.Remove(client);
-            await context.SaveChangesAsync();
-        }
+        context.Clients.Remove(client);
+        await context.SaveChangesAsync();
     }
 }

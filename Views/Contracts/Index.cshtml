@@ -44,7 +44,7 @@
                             <i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-lg-inline">Edit</span>
                         </a>
 
-                        <form asp-action="Delete" asp-route-id="@item.Id" class="d-inline" id="contractDeleteForm">
+                        <form asp-action="Delete" asp-route-id="@item.Id" class="d-inline" data-confirm-form>
                             @Html.AntiForgeryToken()
                             <button type="submit" class="btn btn-outline-danger btn-sm">
                                 <i class="fa-solid fa-trash"></i> <span class="d-none d-lg-inline">Delete</span>
@@ -85,6 +85,6 @@
 @section Scripts
 {
     <script>
-        protectDeleteForm("form#contractDeleteForm")
+        protectDeleteForm("form[data-confirm-form")
     </script>
 }

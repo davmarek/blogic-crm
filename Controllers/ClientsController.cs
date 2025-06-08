@@ -24,4 +24,18 @@ public class ClientsController(ClientRepository repository) : Controller
         return View(consultant);
     }
     
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var client = await repository.GetClientByIdAsync(id);
+        if (client is null)
+        {
+            return NotFound();
+        }
+
+        await repository.DeleteClientAsync(client);
+        return RedirectToAction(nameof(Index));
+    }
+    
 }

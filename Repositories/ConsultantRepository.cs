@@ -21,26 +21,21 @@ public class ConsultantRepository(AppDbContext context)
 
     public async Task AddInstitutionAsync(Institution institution)
     {
-        // TODO: Implement for Client
+        // TODO: Implement for Consultant
         context.Institutions.Add(institution);
         await context.SaveChangesAsync();
     }
 
     public async Task UpdateInstitutionAsync(Institution institution)
     {
-        // TODO: Implement for Client
+        // TODO: Implement for Consultant
         context.Institutions.Update(institution);
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteInstitutionAsync(Guid id)
+    public async Task DeleteConsultantAsync(Consultant consultant)
     {
-        // TODO: Implement for Client
-        var institution = await GetConsultantByIdAsync(id);
-        if (institution != null)
-        {
-            context.Consultants.Remove(institution);
-            await context.SaveChangesAsync();
-        }
+        context.Consultants.Remove(consultant);
+        await context.SaveChangesAsync();
     }
 }

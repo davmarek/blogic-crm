@@ -24,11 +24,16 @@ public class Client
     [MaxLength(256)]
     public required string BirthNumber { get; set; }
 
-    [DataType(DataType.Date)] public required DateTime Birthday { get; set; }
+    [Required]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+    public required DateTime Birthday { get; set; }
 
     // Contract Relationship (Has-Many)
     public ICollection<Contract> Contracts { get; set; } = [];
-    
+
     // Computed properties
     public string FullName => $"{FirstName} {LastName}";
+    public int Age => DateTime.Now.Year - Birthday.Year - (DateTime.Now.DayOfYear < Birthday.DayOfYear ? 1 : 0);
+
 }
