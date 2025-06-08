@@ -46,4 +46,18 @@ public class ConsultantRepository(AppDbContext context)
         context.Consultants.Remove(consultant);
         await context.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<Consultant>> SearchConsultantsAsync(string query)
+    {
+        // query = query.ToLower();
+        return await context.Consultants
+            .Where(c =>
+                c.Id.ToString().Contains(query) ||
+                EF.Functions.Like(c.FirstName, $"%{query}%") ||
+                EF.Functions.Like(c.LastName, $"%{query}%") ||
+                EF.Functions.Like(c.Email, $"%{query}%")
+            )
+            .OrderByDescending(e => e.CreatedAt)
+            .ToListAsync();
+    }
 }

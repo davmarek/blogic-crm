@@ -13,7 +13,7 @@ public class ClientRepository(AppDbContext context)
             .OrderByDescending(e => e.CreatedAt)
             .ToListAsync();
     }
-    
+
     public IQueryable<Client> GetAllClientsQueryable()
     {
         return context.Clients
@@ -44,5 +44,19 @@ public class ClientRepository(AppDbContext context)
     {
         context.Clients.Remove(client);
         await context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Client>> SearchClientsAsync(string query)
+    {
+        // query = query.ToLower();
+        return await context.Clients
+            .Where(c =>
+                c.Id.ToString().Contains(query) ||
+                EF.Functions.Like(c.FirstName, $"%{query}%") ||
+                EF.Functions.Like(c.LastName, $"%{query}%") ||
+                EF.Functions.Like(c.Email, $"%{query}%")
+            )
+            .OrderByDescending(e => e.CreatedAt)
+            .ToListAsync();
     }
 }

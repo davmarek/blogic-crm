@@ -7,6 +7,19 @@
 <h2>Contract</h2>
 <p class="user-select-all text-body-secondary font-monospace">@Model.Id.ToString()</p>
 
+<div class="mb-3">
+    <a asp-controller="Contracts" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+        <i class="fa-solid fa-pen-to-square"></i> Edit
+    </a>
+    
+    <form asp-controller="Contracts" asp-action="Delete" asp-route-id="@Model.Id" class="d-inline" data-confirm-form>
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-outline-danger">
+            <i class="fa-solid fa-trash"></i> <span class="d-none d-lg-inline">Delete</span>
+        </button>
+    </form>
+</div>
+
 <div class="row g-5">
 
     <dl class="col-auto">

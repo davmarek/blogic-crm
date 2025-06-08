@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-function protectDeleteForm(querySelector){
+function protectDeleteForm(querySelector) {
     const form = document.querySelectorAll(querySelector);
     if (form.length > 0) {
         form.forEach((f) => {
@@ -15,3 +15,7 @@ function protectDeleteForm(querySelector){
         });
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    protectDeleteForm("form[data-confirm-form]");
+});

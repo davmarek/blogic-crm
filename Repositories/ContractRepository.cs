@@ -7,7 +7,7 @@ namespace BlogicCRM.Repositories;
 public class ContractRepository(
     AppDbContext context,
     ILogger<ContractRepository> logger
-    )
+)
 {
     public IQueryable<Contract> GetAllContractsQueryable()
     {
@@ -51,7 +51,6 @@ public class ContractRepository(
         logger.LogInformation("Updating contract {ContractId}", contract.Id);
         if (consultantIds != null)
         {
-            
             var newConsultants = await context.Consultants
                 .Where(e => consultantIds.Contains(e.Id) && e.Id != contract.Id)
                 .ToListAsync();
@@ -63,7 +62,7 @@ public class ContractRepository(
                 contract.Consultants.Add(newConsultant);
             }
         }
-        
+
         context.Contracts.Update(contract);
         await context.SaveChangesAsync();
     }
@@ -72,5 +71,25 @@ public class ContractRepository(
     {
         context.Contracts.Remove(contract);
         await context.SaveChangesAsync();
+    }
+
+
+    public async Task<IEnumerable<Contract>> SearchContractsAsync(string query)
+    {
+        // query = query.ToLower();
+        return await context.Contracts
+            .Include(c => c.Client)
+            .Include(c => c.Institution)
+            .Include(c => c.Admin)
+            .Include(c => c.Consultants)
+            .Where(c =>
+                c.Id.ToString().Contains(query) ||
+                EF.Functions.Like(c.Client.FirstName, $"%{query}%") ||
+                EF.Functions.Like(c.Client.LastName, $"%{query}%") ||
+                EF.Functions.Like(c.Admin.FirstName, $"%{query}%") ||
+                EF.Functions.Like(c.Admin.LastName, $"%{query}%") ||
+                EF.Functions.Like(c.Institution.Name, $"%{query}%")
+            )
+            .ToListAsync();
     }
 }

@@ -44,6 +44,7 @@ public class Client
     public ICollection<Contract> Contracts { get; set; } = [];
 
     // Computed properties
+    [DisplayName("Full Name")]
     public string FullName => $"{FirstName} {LastName}";
     public int Age => DateTime.Now.Year - Birthdate.Year - (DateTime.Now.DayOfYear < Birthdate.DayOfYear ? 1 : 0);
 }

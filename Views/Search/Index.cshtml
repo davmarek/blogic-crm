@@ -1,0 +1,152 @@
+@model BlogicCRM.Models.ViewModels.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<h2 class="d-flex align-items-center flex-wrap text-nowrap">
+    Search
+    "<i class="d-inline-block text-truncate" style="max-width: 20ch">@Model.SearchTerm</i>"
+</h2>
+
+<h5>Clients (@Model.Clients.Count())</h5>
+@if (!Model.Clients.Any())
+{
+    <p class="text-muted">No consultants found.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>@Html.DisplayNameForInnerType((Client i) => i.FullName)</th>
+                <th>@Html.DisplayNameForInnerType((Client i) => i.Email)</th>
+                <th>@Html.DisplayNameForInnerType((Client i) => i.Phone)</th>
+                <th>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</th>
+                <th>@Html.DisplayNameForInnerType((Client i) => i.Birthdate)</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var item in Model.Clients)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.BirthNumber</td>
+                    <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
+
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a asp-controller="Clients" asp-action="Show" asp-route-id="@item.Id"
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="fa-solid fa-eye"></i> <span class="d-none d-lg-inline">Detail</span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h5 class="mt-4">Consultants (@Model.Consultants.Count())</h5>
+@if (!Model.Consultants.Any())
+{
+    <p class="text-muted">No consultants found.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>@Html.DisplayNameForInnerType((Consultant i) => i.FullName)</th>
+                <th>@Html.DisplayNameForInnerType((Consultant i) => i.Email)</th>
+                <th>@Html.DisplayNameForInnerType((Consultant i) => i.Phone)</th>
+                <th>@Html.DisplayNameForInnerType((Consultant i) => i.BirthNumber)</th>
+                <th>@Html.DisplayNameForInnerType((Consultant i) => i.Birthdate)</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var item in Model.Consultants)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.BirthNumber</td>
+                    <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
+
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a asp-controller="Consultants" asp-action="Show" asp-route-id="@item.Id"
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="fa-solid fa-eye"></i> <span class="d-none d-lg-inline">Detail</span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h5 class="mt-4">Contracts (@Model.Contracts.Count())</h5>
+@if (!Model.Contracts.Any())
+{
+    <p class="text-muted">No contracts found.</p>
+}
+else
+{
+    <div class="table-responsive">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.ShortId)</th>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</th>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.Effective)</th>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</th>
+                <th>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var item in Model.Contracts)
+            {
+                <tr>
+                    <td class="font-monospace">@item.ShortId</td>
+                    <td>@item.Client.FullName</td>
+                    <td>@item.Admin.FullName</td>
+                    <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Effective)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Closed)</td>
+                    <td>@item.Institution.Name</td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a asp-controller="Contracts" asp-action="Show" asp-route-id="@item.Id"
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="fa-solid fa-eye"></i> <span class="d-none d-lg-inline">Detail</span>
+                            </a>
+
+
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

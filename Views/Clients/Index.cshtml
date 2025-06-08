@@ -10,11 +10,10 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th>@Html.DisplayNameForInnerType((Client i) => i.FirstName)</th>
-            <th>@Html.DisplayNameForInnerType((Client i) => i.LastName)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.FullName)</th>
             <th>@Html.DisplayNameForInnerType((Client i) => i.Email)</th>
             <th>@Html.DisplayNameForInnerType((Client i) => i.Phone)</th>
             <th>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</th>
@@ -27,8 +26,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
+                <td>@item.FullName</td>
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
                 <td>@item.BirthNumber</td>
@@ -83,9 +81,3 @@
     </ul>
 </nav>
 
-@section Scripts
-{
-    <script>
-        protectDeleteForm("form[data-confirm-form]");
-    </script>
-}
