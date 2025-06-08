@@ -2,6 +2,7 @@ using BlogicCRM.Models;
 using BlogicCRM.Models.ViewModels;
 using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace BlogicCRM.Controllers;
@@ -54,7 +55,7 @@ public class ContractsController(
         {
             logger.LogInformation("Adding consultant {S}", modelConsultantId.ToString());
         }
-        
+
         if (model.EffectiveDate < model.CreatedDate)
         {
             ModelState.AddModelError(nameof(model.EffectiveDate), "Effective date cannot be before the created date.");
@@ -74,7 +75,7 @@ public class ContractsController(
         {
             ModelState.AddModelError(nameof(model.ConsultantIds), "Admin cannot be a consultant.");
         }
-        
+
         if (!ModelState.IsValid || ModelState.ErrorCount > 0)
         {
             model.Institutions = await institutionRepository.GetAllInstitutionsAsync();
@@ -93,7 +94,7 @@ public class ContractsController(
             Effective = model.EffectiveDate,
             Closed = model.ClosingDate
         };
-        
+
 
         await contractRepository.AddContractAsync(contract, model.ConsultantIds);
         return RedirectToAction(nameof(Index));
@@ -106,7 +107,7 @@ public class ContractsController(
         {
             return NotFound();
         }
-        
+
         return View(new ContractFormViewModel
         {
             ClientId = contract.ClientId,
@@ -116,13 +117,13 @@ public class ContractsController(
             EffectiveDate = contract.Effective,
             ClosingDate = contract.Closed,
             ConsultantIds = contract.Consultants.Select(c => c.Id).ToList(),
-            
+
             Institutions = await institutionRepository.GetAllInstitutionsAsync(),
             Clients = await clientRepository.GetAllClientsAsync(),
             Consultants = await consultantRepository.GetAllConsultantsAsync()
         });
     }
-    
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(ContractFormViewModel model)
@@ -131,13 +132,13 @@ public class ContractsController(
         {
             return BadRequest("Missing contract ID.");
         }
-        
+
         logger.LogInformation("Selected consultant count {C}", model.ConsultantIds.Count);
         foreach (var modelConsultantId in model.ConsultantIds)
         {
             logger.LogInformation("Adding consultant {S}", modelConsultantId.ToString());
         }
-        
+
         if (model.EffectiveDate < model.CreatedDate)
         {
             ModelState.AddModelError(nameof(model.EffectiveDate), "Effective date cannot be before the created date.");
@@ -157,7 +158,7 @@ public class ContractsController(
         {
             ModelState.AddModelError(nameof(model.ConsultantIds), "Admin cannot be a consultant.");
         }
-        
+
         if (!ModelState.IsValid || ModelState.ErrorCount > 0)
         {
             model.Institutions = await institutionRepository.GetAllInstitutionsAsync();
@@ -165,25 +166,25 @@ public class ContractsController(
             model.Consultants = await consultantRepository.GetAllConsultantsAsync();
             return View(model);
         }
-        
+
         var existingContract = await contractRepository.GetContractByIdAsync(model.Id);
         if (existingContract == null)
         {
             return NotFound();
         }
-        
+
         existingContract.ClientId = model.ClientId;
         existingContract.AdminId = model.AdminId;
         existingContract.InstitutionId = model.InstitutionId;
         existingContract.Created = model.CreatedDate;
         existingContract.Effective = model.EffectiveDate;
         existingContract.Closed = model.ClosingDate;
-        
+
 
         await contractRepository.UpdateContractAsync(existingContract, model.ConsultantIds);
         return RedirectToAction(nameof(Index));
     }
-    
+
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(Guid id)
@@ -196,5 +197,25 @@ public class ContractsController(
 
         await contractRepository.DeleteContractAsync(contract);
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ExportToCsv()
+    {
+        var consultants = await contractRepository.GetAllContractsQueryable().ToListAsync();
+
+        var content = CsvHelper.BuildCsv(consultants,
+            "Id,Client Name,Admin Name,Institution,Created,Effective,Closed",
+            c =>
+                $"{c.Id}," +
+                $"{c.Client.FullName}," +
+                $"{c.Admin.FullName}," +
+                $"{c.Institution.Name}," +
+                $"{c.Created:yyyy-MM-dd}," +
+                $"{c.Effective:yyyy-MM-dd}," +
+                $"{c.Effective:yyyy-MM-dd}"
+        );
+
+        return File(System.Text.Encoding.UTF8.GetBytes(content), "text/csv", "contracts.csv");
     }
 }

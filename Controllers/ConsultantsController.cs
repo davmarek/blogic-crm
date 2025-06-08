@@ -115,4 +115,18 @@ public class ConsultantsController(ConsultantRepository repository) : Controller
         return RedirectToAction(nameof(Index));
     }
     
+    [HttpPost]
+    public async Task<IActionResult> ExportToCsv()
+    {
+        var consultants = await repository.GetAllConsultantsAsync();
+        
+        var content = CsvHelper.BuildCsv(consultants,
+            "Id,FirstName,LastName,Email,Phone,BirthNumber,Birthdate",
+            c =>
+                $"{c.Id},{c.FirstName},{c.LastName},{c.Email},{c.Phone},{c.BirthNumber},{c.Birthdate:yyyy-MM-dd}"
+        );
+        
+        return File(System.Text.Encoding.UTF8.GetBytes(content), "text/csv", "consultants.csv");
+    }
+    
 }

@@ -1,7 +1,8 @@
+using System.Text;
 using BlogicCRM.Models;
 using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using static System.Text.Encoding;
 
 
 namespace BlogicCRM.Controllers;
@@ -114,5 +115,19 @@ public class ClientsController(ClientRepository repository) : Controller
 
         await repository.DeleteClientAsync(client);
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ExportToCsv()
+    {
+        var clients = await repository.GetAllClientsAsync();
+        
+        var content = CsvHelper.BuildCsv(clients,
+            "Id,FirstName,LastName,Email,Phone,BirthNumber,Birthdate",
+            client =>
+                $"{client.Id},{client.FirstName},{client.LastName},{client.Email},{client.Phone},{client.BirthNumber},{client.Birthdate:yyyy-MM-dd}"
+        );
+        
+        return File(UTF8.GetBytes(content), "text/csv", "clients.csv");
     }
 }
