@@ -32,4 +32,18 @@ public class InstitutionsController(InstitutionRepository repository) : Controll
         await repository.AddInstitutionAsync(new Institution { Name = viewModel.NewInstitutionName });
         return RedirectToAction(nameof(Index));
     }
+    
+    
+    [HttpPost]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var institution = await repository.GetInstitutionByIdAsync(id);
+        if (institution == null)
+        {
+            return NotFound();
+        }
+
+        await repository.DeleteInstitutionAsync(institution);
+        return RedirectToAction(nameof(Index));
+    }
 }

@@ -23,6 +23,7 @@
     <tr>
         <th>@Html.DisplayNameForInnerType((Institution i) => i.Id)</th>
         <th>@Html.DisplayNameForInnerType((Institution i) => i.Name)</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -32,6 +33,16 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>
+                
+                    <form asp-action="Delete" asp-route-id="@item.Id" class="d-inline" data-confirm-form>
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                            <i class="fa-solid fa-trash"></i> <span class="d-none d-lg-inline">Delete</span>
+                        </button>
+                    </form>
+                
+            </td>
         </tr>
     }
     </tbody>

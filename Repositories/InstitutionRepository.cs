@@ -28,13 +28,9 @@ public class InstitutionRepository(AppDbContext context)
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteInstitutionAsync(int id)
+    public async Task DeleteInstitutionAsync(Institution institution)
     {
-        var institution = await GetInstitutionByIdAsync(id);
-        if (institution != null)
-        {
-            context.Institutions.Remove(institution);
-            await context.SaveChangesAsync();
-        }
+        context.Institutions.Remove(institution);
+        await context.SaveChangesAsync();
     }
 }
