@@ -34,17 +34,20 @@
                 <td>@Html.DisplayFor(modelItem => item.Effective)</td>
                 <td>@Html.DisplayFor(modelItem => item.Closed)</td>
                 <td>@item.Institution.Name</td>
-                <td>
-
-                    <a asp-action="Show" asp-route-id="@item.Id" class="icon-link">
-                        <svg class="bi" data-slot="icon" fill="currentColor" viewBox="0 0 16 16"
-                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                  d="M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                        </svg>
-                        Detail
+                <td class="">
+                    <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
+                        <i class="fa-solid fa-eye"></i> Detail
                     </a>
+
+                    <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                    </a>
+                    
+                    <form asp-action="Delete" asp-route-id="@item.Id" class="d-inline" id="contractDeleteForm">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </form>
                 </td>
             </tr>
         }
@@ -56,23 +59,6 @@
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-
-@*<a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   class="btn btn-default @prevDisabled"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
->
-    Previous
-</a>
-<a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   class="btn btn-default @nextDisabled"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
->
-    Next
-</a>*@
 
 <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -92,3 +78,10 @@
         </li>
     </ul>
 </nav>
+
+@section Scripts
+{
+    <script>
+        protectDeleteForm("form#contractDeleteForm")
+    </script>
+}

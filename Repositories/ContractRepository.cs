@@ -26,7 +26,7 @@ public class ContractRepository(AppDbContext context)
             .Include(c => c.Consultants)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
-    
+
     public async Task AddContractAsync(Contract contract, IEnumerable<Guid>? consultantIds = null)
     {
         if (consultantIds != null)
@@ -34,7 +34,7 @@ public class ContractRepository(AppDbContext context)
             var consultants = await context.Consultants
                 .Where(e => consultantIds.Contains(e.Id) && e.Id != contract.Id)
                 .ToListAsync();
-            
+
             contract.Consultants = consultants;
         }
 
@@ -49,13 +49,9 @@ public class ContractRepository(AppDbContext context)
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteContractAsync(Guid id)
+    public async Task DeleteContractAsync(Contract contract)
     {
-        var institution = await GetContractByIdAsync(id);
-        if (institution != null)
-        {
-            context.Contracts.Remove(institution);
-            await context.SaveChangesAsync();
-        }
+        context.Contracts.Remove(contract);
+        await context.SaveChangesAsync();
     }
 }

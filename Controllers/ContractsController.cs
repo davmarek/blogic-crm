@@ -98,4 +98,18 @@ public class ContractsController(
         await contractRepository.AddContractAsync(contract, model.ConsultantIds);
         return RedirectToAction(nameof(Index));
     }
+    
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var contract = await contractRepository.GetContractByIdAsync(id);
+        if (contract is null)
+        {
+            return NotFound();
+        }
+
+        await contractRepository.DeleteContractAsync(contract);
+        return RedirectToAction(nameof(Index));
+    }
 }
