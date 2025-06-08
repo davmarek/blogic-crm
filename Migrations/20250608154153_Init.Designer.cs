@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogicCRM.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250608151024_Init")]
+    [Migration("20250608154153_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -44,12 +44,12 @@ namespace BlogicCRM.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(256)
+                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(256)
+                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
@@ -185,7 +185,7 @@ namespace BlogicCRM.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime>("Birthdate")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
@@ -220,7 +220,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1985, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1985, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Sebastian_Sanchez2407@yvu30.website",
                             FirstName = "Jaroslav",
@@ -231,7 +231,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1986, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1986, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Josh_Logan4466@uagvw.app",
                             FirstName = "Josef",
@@ -242,7 +242,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1987, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1987, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Roger_Bingham7598@dvqq2.meet",
                             FirstName = "Adam",
@@ -253,7 +253,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1988, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1988, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Bryon_Windsor6229@iscmr.meet",
                             FirstName = "Matěj",
@@ -264,7 +264,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1989, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1989, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Courtney_Salt2851@y96lx.mobi",
                             FirstName = "Daniel",
@@ -275,7 +275,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1990, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1990, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Rocco_Richards6731@bcfhs.business",
                             FirstName = "Ondřej",
@@ -286,7 +286,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1991, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1991, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Fiona_Saunders8101@karnv.software",
                             FirstName = "Vojtěch",
@@ -297,7 +297,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1992, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1992, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mason_Tutton6832@xtwt3.online",
                             FirstName = "Filip",
@@ -308,7 +308,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000009"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1993, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1993, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Maria_Potts856@v1wn5.zone",
                             FirstName = "Jakub",
@@ -319,7 +319,7 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000010"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1994, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1994, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Adalind_Lindsay1835@yfxpw.edu",
                             FirstName = "Michal",

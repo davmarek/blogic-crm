@@ -19,8 +19,8 @@ namespace BlogicCRM.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
                     Phone = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
                     BirthNumber = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
@@ -42,7 +42,7 @@ namespace BlogicCRM.Migrations
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
                     Phone = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
                     BirthNumber = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    Birthday = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Birthdate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,7 +141,7 @@ namespace BlogicCRM.Migrations
 
             migrationBuilder.InsertData(
                 table: "Consultants",
-                columns: new[] { "Id", "BirthNumber", "Birthday", "CreatedAt", "Email", "FirstName", "LastName", "Phone" },
+                columns: new[] { "Id", "BirthNumber", "Birthdate", "CreatedAt", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[,]
                 {
                     { new Guid("00000000-0000-0000-0000-000000000001"), "1234567890", new DateTime(1985, 6, 8, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified), "Sebastian_Sanchez2407@yvu30.website", "Jaroslav", "Fiala", "111888777" },

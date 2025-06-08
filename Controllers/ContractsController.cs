@@ -124,6 +124,7 @@ public class ContractsController(
     }
     
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(ContractFormViewModel model)
     {
         if (model.Id == Guid.Empty)

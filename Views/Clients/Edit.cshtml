@@ -1,0 +1,56 @@
+@model Client
+
+@{
+    ViewData["Title"] = "Edit Client";
+}
+
+<div class="mx-auto">
+
+    <h2>Edit Client</h2>
+
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="Id" />
+        
+        <div class="mb-3">
+            <label asp-for="FirstName" class="form-label">First name</label>
+            <input type="text" asp-for="FirstName" class="form-control" required/>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LastName" class="form-label">Last name</label>
+            <input type="text" asp-for="LastName" class="form-control" required/>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input type="email" asp-for="Email" class="form-control" required/>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label">Phone number</label>
+            <input type="tel" asp-for="Phone" class="form-control" required/>
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BirthNumber" class="form-label">Birth number</label>
+            <input type="text" asp-for="BirthNumber" class="form-control" required/>
+            <span asp-validation-for="BirthNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Birthdate" class="form-label">Birthdate</label>
+            <input type="date" asp-for="Birthdate" class="form-control" required/>
+            <span asp-validation-for="Birthdate" class="text-danger"></span>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    </form>
+
+</div>

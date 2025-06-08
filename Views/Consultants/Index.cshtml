@@ -4,6 +4,11 @@
     ViewData["Title"] = "Consultants";
 }
 <h2>Consultants</h2>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-primary">New Consultant</a>
+</div>
+
 <div class="table-responsive">
 
     <table class="table">
@@ -14,7 +19,7 @@
             <th>@Html.DisplayNameForInnerType((Consultant i) => i.Email)</th>
             <th>@Html.DisplayNameForInnerType((Consultant i) => i.Phone)</th>
             <th>@Html.DisplayNameForInnerType((Consultant i) => i.BirthNumber)</th>
-            <th>@Html.DisplayNameForInnerType((Consultant i) => i.Birthday)</th>
+            <th>@Html.DisplayNameForInnerType((Consultant i) => i.Birthdate)</th>
             <th>Actions</th>
 
         </tr>
@@ -29,15 +34,14 @@
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
                 <td>@item.BirthNumber</td>
-                <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
                 <td>
                     <div class="d-flex gap-1">
                         <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
                             <i class="fa-solid fa-eye"></i> <span class="d-none d-lg-inline">Detail</span>
                         </a>
 
-                        @* TODO: replace this with Edit action *@
-                        <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-lg-inline">Edit</span>
                         </a>
 

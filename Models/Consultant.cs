@@ -30,8 +30,8 @@ public class Consultant
 
     [Required]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-    public required DateTime Birthday { get; set; }
+    [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
+    public required DateTime Birthdate { get; set; }
 
     // Contract Relationship
     public ICollection<Contract> AdministeredContracts { get; set; } = [];
@@ -39,5 +39,5 @@ public class Consultant
     
     // Computed properties
     public string FullName => $"{FirstName} {LastName}";
-    public int Age => DateTime.Now.Year - Birthday.Year - (DateTime.Now.DayOfYear < Birthday.DayOfYear ? 1 : 0);
+    public int Age => DateTime.Now.Year - Birthdate.Year - (DateTime.Now.DayOfYear < Birthdate.DayOfYear ? 1 : 0);
 }

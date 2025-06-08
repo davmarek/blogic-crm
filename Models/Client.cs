@@ -11,13 +11,13 @@ public class Client
 
 
     [DisplayName("First Name")]
-    [StringLength(256, MinimumLength = 1)]
+    [StringLength(150, MinimumLength = 1)]
     public required string FirstName { get; set; }
 
 
     [DisplayName("Last Name")]
     [Required]
-    [StringLength(256, MinimumLength = 1)]
+    [StringLength(150, MinimumLength = 1)]
     public required string LastName { get; set; }
 
 
@@ -37,7 +37,7 @@ public class Client
 
     [Required]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
     public required DateTime Birthdate { get; set; }
 
     // Contract Relationship (Has-Many)

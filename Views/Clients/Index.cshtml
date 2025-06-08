@@ -6,7 +6,7 @@
 <h2>Clients</h2>
 
 <div class="mb-3">
-    <a asp-controller="Clients" asp-action="Create" class="btn btn-primary">New Client</a>
+    <a asp-action="Create" class="btn btn-primary">New Client</a>
 </div>
 
 <div class="table-responsive">
@@ -40,7 +40,7 @@
                             <i class="fa-solid fa-eye"></i> <span class="d-none d-lg-inline">Detail</span>
                         </a>
 
-                        <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-lg-inline">Edit</span>
                         </a>
 
