@@ -41,7 +41,8 @@ public class AppDbContext : DbContext
                         Email = Faker.GetEmail(i),
                         Phone = Faker.GetPhoneNumber(i),
                         BirthNumber = "1234567890",
-                        Birthday = DateTime.Today.AddYears(-40 + i)
+                        Birthdate = DateTime.Today.AddYears(-40 + i),
+                        CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0),
                     }
                 );
             }
@@ -67,7 +68,8 @@ public class AppDbContext : DbContext
                         Email = Faker.GetEmail(15 - i),
                         Phone = Faker.GetPhoneNumber(15 - i),
                         BirthNumber = "1234567890",
-                        Birthday = DateTime.Today.AddYears(-40 + i)
+                        Birthday = DateTime.Today.AddYears(-40 + i),
+                        CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0),
                     }
                 );
             }

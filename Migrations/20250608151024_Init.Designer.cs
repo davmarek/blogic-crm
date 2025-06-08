@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogicCRM.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250607110608_Init")]
+    [Migration("20250608151024_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -31,7 +31,10 @@ namespace BlogicCRM.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -63,7 +66,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1985, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1985, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Barry_Moran561@jcf8v.mobi",
                             FirstName = "Jan",
                             LastName = "Novák",
@@ -73,7 +77,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1986, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1986, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Ema_Mcleod5369@yahoo.directory",
                             FirstName = "David",
                             LastName = "Svoboda",
@@ -83,7 +88,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1987, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1987, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Maxwell_Ebbs6093@1kmd3.press",
                             FirstName = "Petr",
                             LastName = "Novotný",
@@ -93,7 +99,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1988, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1988, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Louise_Khan3677@ds59r.host",
                             FirstName = "Martin",
                             LastName = "Dvořák",
@@ -103,7 +110,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1989, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1989, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Aileen_Gaynor5441@hepmv.meet",
                             FirstName = "Tomáš",
                             LastName = "Černý",
@@ -113,7 +121,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1990, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1990, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Sloane_Tanner4692@kyb7t.info",
                             FirstName = "Lukáš",
                             LastName = "Procházka",
@@ -123,7 +132,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1991, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1991, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Adalind_Lindsay1835@yfxpw.edu",
                             FirstName = "Michal",
                             LastName = "Kovář",
@@ -133,7 +143,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1992, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1992, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Maria_Potts856@v1wn5.zone",
                             FirstName = "Jakub",
                             LastName = "Veselý",
@@ -143,7 +154,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000009"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1993, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1993, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mason_Tutton6832@xtwt3.online",
                             FirstName = "Filip",
                             LastName = "Horák",
@@ -153,7 +165,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000010"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1994, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthdate = new DateTime(1994, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Fiona_Saunders8101@karnv.software",
                             FirstName = "Vojtěch",
                             LastName = "Němec",
@@ -173,6 +186,9 @@ namespace BlogicCRM.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Birthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -204,7 +220,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1985, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1985, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Sebastian_Sanchez2407@yvu30.website",
                             FirstName = "Jaroslav",
                             LastName = "Fiala",
@@ -214,7 +231,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1986, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1986, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Josh_Logan4466@uagvw.app",
                             FirstName = "Josef",
                             LastName = "Král",
@@ -224,7 +242,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1987, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1987, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Roger_Bingham7598@dvqq2.meet",
                             FirstName = "Adam",
                             LastName = "Richter",
@@ -234,7 +253,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1988, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1988, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Bryon_Windsor6229@iscmr.meet",
                             FirstName = "Matěj",
                             LastName = "Beneš",
@@ -244,7 +264,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1989, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1989, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Courtney_Salt2851@y96lx.mobi",
                             FirstName = "Daniel",
                             LastName = "Růžička",
@@ -254,7 +275,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1990, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1990, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Rocco_Richards6731@bcfhs.business",
                             FirstName = "Ondřej",
                             LastName = "Pokorný",
@@ -264,7 +286,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1991, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1991, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Fiona_Saunders8101@karnv.software",
                             FirstName = "Vojtěch",
                             LastName = "Němec",
@@ -274,7 +297,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1992, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1992, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mason_Tutton6832@xtwt3.online",
                             FirstName = "Filip",
                             LastName = "Horák",
@@ -284,7 +308,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000009"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1993, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1993, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Maria_Potts856@v1wn5.zone",
                             FirstName = "Jakub",
                             LastName = "Veselý",
@@ -294,7 +319,8 @@ namespace BlogicCRM.Migrations
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000010"),
                             BirthNumber = "1234567890",
-                            Birthday = new DateTime(1994, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birthday = new DateTime(1994, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2025, 6, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Adalind_Lindsay1835@yfxpw.edu",
                             FirstName = "Michal",
                             LastName = "Kovář",
@@ -345,10 +371,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000001"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Closed = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -356,10 +382,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000002"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Closed = new DateTime(2025, 6, 13, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         },
                         new
@@ -367,10 +393,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000003"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Closed = new DateTime(2025, 6, 14, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 6, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 3
                         },
                         new
@@ -378,10 +404,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000004"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000004"),
-                            Closed = new DateTime(2025, 6, 15, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -389,10 +415,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000005"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000005"),
-                            Closed = new DateTime(2025, 6, 16, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         },
                         new
@@ -400,10 +426,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000006"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000006"),
-                            Closed = new DateTime(2025, 6, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 3
                         },
                         new
@@ -411,10 +437,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000007"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000007"),
-                            Closed = new DateTime(2025, 6, 18, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -422,10 +448,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000001"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000008"),
-                            Closed = new DateTime(2025, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         },
                         new
@@ -433,10 +459,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000009"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000002"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Closed = new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 3
                         },
                         new
@@ -444,10 +470,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000010"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000003"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Closed = new DateTime(2025, 6, 21, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -455,10 +481,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000011"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000004"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Closed = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         },
                         new
@@ -466,10 +492,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000012"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000005"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000004"),
-                            Closed = new DateTime(2025, 6, 13, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 3
                         },
                         new
@@ -477,10 +503,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000013"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000006"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000005"),
-                            Closed = new DateTime(2025, 6, 14, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 26, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -488,10 +514,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000014"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000007"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000006"),
-                            Closed = new DateTime(2025, 6, 15, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 25, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 26, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         },
                         new
@@ -499,10 +525,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000015"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000001"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000007"),
-                            Closed = new DateTime(2025, 6, 16, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 24, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 25, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 3
                         },
                         new
@@ -510,10 +536,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000016"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000002"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000008"),
-                            Closed = new DateTime(2025, 6, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 24, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -521,10 +547,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000017"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000003"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Closed = new DateTime(2025, 6, 18, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 23, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         },
                         new
@@ -532,10 +558,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000018"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000004"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Closed = new DateTime(2025, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 3
                         },
                         new
@@ -543,10 +569,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000019"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000005"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Closed = new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 20, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 21, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 1
                         },
                         new
@@ -554,10 +580,10 @@ namespace BlogicCRM.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000020"),
                             AdminId = new Guid("00000000-0000-0000-0000-000000000006"),
                             ClientId = new Guid("00000000-0000-0000-0000-000000000004"),
-                            Closed = new DateTime(2025, 6, 21, 0, 0, 0, 0, DateTimeKind.Local),
-                            Created = new DateTime(2025, 5, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            Closed = new DateTime(2025, 6, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Created = new DateTime(2025, 5, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedAt = new DateTime(2025, 6, 7, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Effective = new DateTime(2025, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            Effective = new DateTime(2025, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             InstitutionId = 2
                         });
                 });

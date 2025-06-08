@@ -1,4 +1,5 @@
 
+using BlogicCRM.Models;
 using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,23 @@ public class ClientsController(ClientRepository repository) : Controller
         }
         
         return View(consultant);
+    }
+    
+    public IActionResult Create()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create(Client client)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(client);
+        }
+        
+        await repository.AddClientAsync(client);
+        return RedirectToAction(nameof(Index));
     }
     
     [HttpPost, ActionName("Delete")]

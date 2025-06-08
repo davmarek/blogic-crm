@@ -8,7 +8,10 @@ public class ClientRepository(AppDbContext context)
 {
     public async Task<IEnumerable<Client>> GetAllClientsAsync()
     {
-        return await context.Clients.AsNoTracking().ToListAsync();
+        return await context.Clients
+            .AsNoTracking()
+            .OrderByDescending(e => e.CreatedAt)
+            .ToListAsync();
     }
 
     public async Task<Client?> GetClientByIdAsync(Guid id)
@@ -18,17 +21,15 @@ public class ClientRepository(AppDbContext context)
             .FirstOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task AddInstitutionAsync(Institution institution)
+    public async Task AddClientAsync(Client client)
     {
-        // TODO: Implement for Client
-        context.Institutions.Add(institution);
+        context.Clients.Add(client);
         await context.SaveChangesAsync();
     }
 
-    public async Task UpdateInstitutionAsync(Institution institution)
+    public async Task UpdateClientAsync(Client client)
     {
-        // TODO: Implement for Client
-        context.Institutions.Update(institution);
+        context.Clients.Update(client);
         await context.SaveChangesAsync();
     }
 

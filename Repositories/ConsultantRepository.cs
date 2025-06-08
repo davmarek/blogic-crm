@@ -8,7 +8,10 @@ public class ConsultantRepository(AppDbContext context)
 {
     public async Task<IEnumerable<Consultant>> GetAllConsultantsAsync()
     {
-        return await context.Consultants.AsNoTracking().ToListAsync();
+        return await context.Consultants
+            .AsNoTracking()
+            .OrderByDescending(e => e.CreatedAt)
+            .ToListAsync();
     }
 
     public async Task<Consultant?> GetConsultantByIdAsync(Guid id)
@@ -19,17 +22,15 @@ public class ConsultantRepository(AppDbContext context)
             .FirstOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task AddInstitutionAsync(Institution institution)
+    public async Task AddConsultantAsync(Consultant consultant)
     {
-        // TODO: Implement for Consultant
-        context.Institutions.Add(institution);
+        context.Consultants.Add(consultant);
         await context.SaveChangesAsync();
     }
 
-    public async Task UpdateInstitutionAsync(Institution institution)
+    public async Task UpdateConsultantAsync(Consultant consultant)
     {
-        // TODO: Implement for Consultant
-        context.Institutions.Update(institution);
+        context.Consultants.Update(consultant);
         await context.SaveChangesAsync();
     }
 

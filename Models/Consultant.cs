@@ -6,6 +6,9 @@ namespace BlogicCRM.Models;
 public class Consultant
 {
     [Key] public Guid Id { get; set; }
+    
+    [DataType(DataType.Date)] public DateTime CreatedAt { get; set; } = DateTime.Now;
+
 
     [DisplayName("First Name")]
     [MaxLength(256)]

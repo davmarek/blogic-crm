@@ -5,6 +5,10 @@
 }
 <h2>Clients</h2>
 
+<div class="mb-3">
+    <a asp-controller="Clients" asp-action="Create" class="btn btn-primary">New Client</a>
+</div>
+
 <div class="table-responsive">
     <table class="table">
         <thead>
@@ -14,7 +18,7 @@
             <th>@Html.DisplayNameForInnerType((Client i) => i.Email)</th>
             <th>@Html.DisplayNameForInnerType((Client i) => i.Phone)</th>
             <th>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</th>
-            <th>@Html.DisplayNameForInnerType((Client i) => i.Birthday)</th>
+            <th>@Html.DisplayNameForInnerType((Client i) => i.Birthdate)</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -28,7 +32,7 @@
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
                 <td>@item.BirthNumber</td>
-                <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
 
                 <td>
                     <div class="d-flex gap-1">
@@ -36,7 +40,6 @@
                             <i class="fa-solid fa-eye"></i> <span class="d-none d-lg-inline">Detail</span>
                         </a>
 
-                        @* TODO: replace this with Edit action *@
                         <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-lg-inline">Edit</span>
                         </a>

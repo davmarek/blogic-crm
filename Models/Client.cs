@@ -6,34 +6,44 @@ namespace BlogicCRM.Models;
 public class Client
 {
     [Key] public Guid Id { get; set; }
+    
+    [DataType(DataType.Date)] public DateTime CreatedAt { get; set; } = DateTime.Now;
+
 
     [DisplayName("First Name")]
-    [MaxLength(256)]
+    [StringLength(256, MinimumLength = 1)]
     public required string FirstName { get; set; }
 
+
     [DisplayName("Last Name")]
-    [MaxLength(256)]
+    [Required]
+    [StringLength(256, MinimumLength = 1)]
     public required string LastName { get; set; }
 
 
-    [MaxLength(256)] public required string Email { get; set; }
+    [Required]
+    [StringLength(256, MinimumLength = 1)]
+    public required string Email { get; set; }
 
-    [MaxLength(256)] public required string Phone { get; set; }
 
+    [Required]
+    [StringLength(256, MinimumLength = 1)]
+    public required string Phone { get; set; }
+
+    [Required]
     [DisplayName("Birth Number")]
-    [MaxLength(256)]
+    [StringLength(256, MinimumLength = 1)]
     public required string BirthNumber { get; set; }
 
     [Required]
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-    public required DateTime Birthday { get; set; }
+    public required DateTime Birthdate { get; set; }
 
     // Contract Relationship (Has-Many)
     public ICollection<Contract> Contracts { get; set; } = [];
 
     // Computed properties
     public string FullName => $"{FirstName} {LastName}";
-    public int Age => DateTime.Now.Year - Birthday.Year - (DateTime.Now.DayOfYear < Birthday.DayOfYear ? 1 : 0);
-
+    public int Age => DateTime.Now.Year - Birthdate.Year - (DateTime.Now.DayOfYear < Birthdate.DayOfYear ? 1 : 0);
 }
