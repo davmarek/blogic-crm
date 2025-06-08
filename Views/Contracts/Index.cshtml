@@ -14,6 +14,7 @@
     <table class="table table-striped ">
         <thead>
         <tr>
+            <th>@Html.DisplayNameForInnerType((Contract i) => i.ShortId)</th>
             <th>@Html.DisplayNameForInnerType((Contract i) => i.Client)</th>
             <th>@Html.DisplayNameForInnerType((Contract i) => i.Admin)</th>
             <th>@Html.DisplayNameForInnerType((Contract i) => i.Created)</th>
@@ -28,6 +29,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td class="font-monospace">@item.ShortId</td>
                 <td>@item.Client.FullName</td>
                 <td>@item.Admin.FullName</td>
                 <td>@Html.DisplayFor(modelItem => item.Created)</td>

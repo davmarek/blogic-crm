@@ -6,24 +6,24 @@
 
 <b>Client</b>
 <h2>@Model.FullName</h2>
-<p class="user-select-all text-body-secondary">@Model.Id.ToString()</p>
+<p class="user-select-all text-body-secondary font-monospace">@Model.Id.ToString()</p>
 
 <dl>
     <dt>@Html.DisplayNameForInnerType((Client i) => i.Email)</dt>
     <dd>@Model.Email</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Client i) => i.Phone)</dt>
     <dd>@Model.Phone</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Client i) => i.BirthNumber)</dt>
     <dd>@Model.BirthNumber</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Client i) => i.Birthday)</dt>
     <dd>@Html.DisplayFor(model => Model.Birthday)</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Client i) => i.Age)</dt>
     <dd>@Model.Age</dd>
-    
+
     <dt>Number of contracts</dt>
     <dd>@Model.Contracts.Count</dd>
 </dl>
