@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlogicCRM.Repositories;
 
-public class ContractRepository(AppDbContext context)
+public class ContractRepository(
+    AppDbContext context,
+    ILogger<ContractRepository> logger
+    )
 {
     public IQueryable<Contract> GetAllContractsQueryable()
     {
@@ -43,8 +46,24 @@ public class ContractRepository(AppDbContext context)
         await context.SaveChangesAsync();
     }
 
-    public async Task UpdateContractAsync(Contract contract)
+    public async Task UpdateContractAsync(Contract contract, IEnumerable<Guid>? consultantIds = null)
     {
+        logger.LogInformation("Updating contract {ContractId}", contract.Id);
+        if (consultantIds != null)
+        {
+            
+            var newConsultants = await context.Consultants
+                .Where(e => consultantIds.Contains(e.Id) && e.Id != contract.Id)
+                .ToListAsync();
+
+            contract.Consultants.Clear();
+
+            foreach (var newConsultant in newConsultants)
+            {
+                contract.Consultants.Add(newConsultant);
+            }
+        }
+        
         context.Contracts.Update(contract);
         await context.SaveChangesAsync();
     }
