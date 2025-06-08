@@ -13,6 +13,13 @@ public class ClientRepository(AppDbContext context)
             .OrderByDescending(e => e.CreatedAt)
             .ToListAsync();
     }
+    
+    public IQueryable<Client> GetAllClientsQueryable()
+    {
+        return context.Clients
+            .OrderByDescending(e => e.CreatedAt)
+            .AsNoTracking();
+    }
 
     public async Task<Client?> GetClientByIdAsync(Guid id)
     {

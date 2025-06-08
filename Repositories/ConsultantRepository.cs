@@ -14,6 +14,13 @@ public class ConsultantRepository(AppDbContext context)
             .ToListAsync();
     }
 
+    public IQueryable<Consultant> GetAllConsultantsQueryable()
+    {
+        return context.Consultants
+            .OrderByDescending(e => e.CreatedAt)
+            .AsNoTracking();
+    }
+
     public async Task<Consultant?> GetConsultantByIdAsync(Guid id)
     {
         return await context.Consultants

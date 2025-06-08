@@ -1,4 +1,3 @@
-
 using BlogicCRM.Models;
 using BlogicCRM.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +8,19 @@ namespace BlogicCRM.Controllers;
 
 public class ClientsController(ClientRepository repository) : Controller
 {
-    public async Task<IActionResult> Index()
+    private const int PageSize = 10;
+
+    public async Task<IActionResult> Index(
+        int? pageNumber
+    )
     {
-        var clients = await repository.GetAllClientsAsync();
-        return View(clients);
+        var clients = repository.GetAllClientsQueryable();
+
+        return View(
+            await PaginatedList<Client>.CreateAsync(clients, pageIndex: pageNumber ?? 1, pageSize: PageSize)
+        );
     }
-    
+
     public async Task<IActionResult> Show(Guid id)
     {
         var consultant = await repository.GetClientByIdAsync(id);
@@ -22,15 +28,15 @@ public class ClientsController(ClientRepository repository) : Controller
         {
             return NotFound();
         }
-        
+
         return View(consultant);
     }
-    
+
     public IActionResult Create()
     {
         return View();
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Create(Client client)
     {
@@ -38,11 +44,12 @@ public class ClientsController(ClientRepository repository) : Controller
         {
             ModelState.AddModelError("Birthdate", "Birthdate cannot be in the future.");
         }
+
         if (!ModelState.IsValid || ModelState.ErrorCount > 0)
         {
             return View(client);
         }
-        
+
         await repository.AddClientAsync(client);
         return RedirectToAction(nameof(Index));
     }
@@ -55,10 +62,10 @@ public class ClientsController(ClientRepository repository) : Controller
         {
             return NotFound();
         }
-        
+
         return View(client);
     }
-    
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Client client)
@@ -67,22 +74,23 @@ public class ClientsController(ClientRepository repository) : Controller
         {
             return BadRequest("Missing contract ID.");
         }
-        
+
         if (client.Birthdate > DateTime.Now)
         {
             ModelState.AddModelError("Birthdate", "Birthdate cannot be in the future.");
         }
+
         if (!ModelState.IsValid || ModelState.ErrorCount > 0)
         {
             return View(client);
         }
-        
+
         var existingClient = await repository.GetClientByIdAsync(client.Id);
         if (existingClient == null)
         {
             return NotFound();
         }
-        
+
         existingClient.FirstName = client.FirstName;
         existingClient.LastName = client.LastName;
         existingClient.Email = client.Email;
@@ -93,7 +101,7 @@ public class ClientsController(ClientRepository repository) : Controller
         await repository.UpdateClientAsync(existingClient);
         return RedirectToAction(nameof(Index));
     }
-    
+
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(Guid id)
@@ -107,5 +115,4 @@ public class ClientsController(ClientRepository repository) : Controller
         await repository.DeleteClientAsync(client);
         return RedirectToAction(nameof(Index));
     }
-    
 }

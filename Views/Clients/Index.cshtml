@@ -1,4 +1,4 @@
-@model IEnumerable<Client>
+@model PaginatedList<Client>
 
 @{
     ViewData["Title"] = "Clients";
@@ -58,6 +58,30 @@
     </table>
 </div>
 
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @prevDisabled">
+            <a class="page-link"
+               asp-action="Index"
+               asp-route-pageNumber="@(Model.PageIndex - 1)">
+                Previous
+            </a>
+        </li>
+        <li class="page-item @nextDisabled">
+            <a class="page-link"
+               asp-action="Index"
+               asp-route-pageNumber="@(Model.PageIndex + 1)">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>
 
 @section Scripts
 {

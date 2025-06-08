@@ -8,10 +8,17 @@ namespace BlogicCRM.Controllers;
 
 public class ConsultantsController(ConsultantRepository repository) : Controller
 {
-    public async Task<IActionResult> Index()
+    private const int PageSize = 10;
+    
+    public async Task<IActionResult> Index(
+        int? pageNumber
+    )
     {
-        var items = await repository.GetAllConsultantsAsync();
-        return View(items);
+        var consultants = repository.GetAllConsultantsQueryable();
+
+        return View(
+            await PaginatedList<Consultant>.CreateAsync(consultants, pageIndex: pageNumber ?? 1, pageSize: PageSize)
+        );
     }
     
     public async Task<IActionResult> Show(Guid id)
