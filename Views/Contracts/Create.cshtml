@@ -32,7 +32,7 @@
                 <option></option>
                 @foreach (var c in Model.Consultants)
                 {
-                    <option value="@c.Id">@($"{c.FirstName} {c.LastName} ({c.Email})")</option>
+                    <option value="@c.Id">@($"{c.FullName} ({c.Email})")</option>
                 }
             </select>
 
@@ -55,16 +55,16 @@
 
         
         <div class="mb-3">
-            <label asp-for="Consultants" class="form-label">Consultants</label>
+            <label asp-for="ConsultantIds" class="form-label">Consultants</label>
 
-            <select asp-for="Consultants" id="consultantsSelect" class="form-control" multiple="">
+            <select asp-for="ConsultantIds" id="consultantsSelect" class="form-control" multiple="">
                 @foreach (var c in Model.Consultants)
                 {
-                    <option value="@c.Id">@($"{c.FirstName} {c.LastName}")</option>
+                    <option value="@c.Id">@c.FullName</option>
                 }
             </select>
 
-            <span asp-validation-for="Consultants" class="text-danger"></span>
+            <span asp-validation-for="ConsultantIds" class="text-danger"></span>
         </div>
         
         

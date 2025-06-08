@@ -1,11 +1,11 @@
 @model Contract
 
 @{
-    ViewData["Title"] = "Contract Show";
+    ViewData["Title"] = "Contract Detail";
 }
 
-    <h2>Contract</h2>
-    <p class="user-select-all text-body-secondary">@Model.Id.ToString()</p>
+<h2>Contract</h2>
+<p class="user-select-all text-body-secondary">@Model.Id.ToString()</p>
 
 <div class="row g-5">
 
@@ -23,11 +23,11 @@
                 @Model.Admin.FullName
             </a>
         </dd>
-        
+
         <dt>@Html.DisplayNameForInnerType((Contract i) => i.Institution)</dt>
         <dd>@Model.Institution.Name</dd>
 
-        
+
         <dt>@Html.DisplayNameForInnerType((Contract i) => i.Consultants)</dt>
         @if (!Model.Consultants.Any())
         {
@@ -37,12 +37,16 @@
         {
             @foreach (var consultant in Model.Consultants)
             {
-                <dd>@($"{consultant.FirstName} {consultant.LastName}")</dd>
+                <dd>
+                    <a asp-area="" asp-controller="Consultants" asp-action="Show" asp-route-id="@consultant.Id">
+                        @consultant.FullName
+                    </a>
+                </dd>
             }
         }
 
     </dl>
-    
+
     <dl class="col-auto">
         <dt>@Html.DisplayNameForInnerType((Contract i) => i.Created)</dt>
         <dd>@Html.DisplayFor(model => Model.Created)</dd>
@@ -52,8 +56,6 @@
 
         <dt>@Html.DisplayNameForInnerType((Contract i) => i.Closed)</dt>
         <dd>@Html.DisplayFor(model => Model.Closed)</dd>
-
-        
     </dl>
 
 </div>

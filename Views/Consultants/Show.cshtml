@@ -6,6 +6,7 @@
 
 <b>Consultant</b>
 <h2>@Model.FullName</h2>
+<p class="user-select-all text-body-secondary">@Model.Id.ToString()</p>
 
 <dl>
     <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Email)</dt>
@@ -21,5 +22,5 @@
     <dd>@Model.AdministeredContracts.Count</dd>
     
     <dt>Number of contracts (as participant)</dt>
-    <dd>@Model.AdministeredContracts.Count</dd>
+    <dd>@Model.ParticipatingContracts.Count</dd>
 </dl>

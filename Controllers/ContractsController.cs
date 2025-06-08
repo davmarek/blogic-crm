@@ -49,17 +49,40 @@ public class ContractsController(
     [HttpPost]
     public async Task<IActionResult> Create(ContractCreateViewModel model)
     {
-        logger.LogInformation("InstitutionId: {}",model.InstitutionId);
-        logger.LogInformation(model.ClientId.ToString());
-        logger.LogInformation(model.AdminId.ToString());
+        logger.LogInformation("Selected consultant count {C}", model.ConsultantIds.Count);
+        foreach (var modelConsultantId in model.ConsultantIds)
+        {
+            logger.LogInformation("Adding consultant {S}", modelConsultantId.ToString());
+        }
+        
+        if (model.EffectiveDate < model.CreatedDate)
+        {
+            ModelState.AddModelError(nameof(model.EffectiveDate), "Effective date cannot be before the created date.");
+        }
 
-        if (!ModelState.IsValid)
+        if (model.ClosingDate < model.CreatedDate)
+        {
+            ModelState.AddModelError(nameof(model.ClosingDate), "Closing date cannot be before the created date.");
+        }
+
+        if (model.ClosingDate < model.EffectiveDate)
+        {
+            ModelState.AddModelError(nameof(model.ClosingDate), "Closing date cannot be before the effective date.");
+        }
+
+        if (model.ConsultantIds.Contains(model.AdminId))
+        {
+            ModelState.AddModelError(nameof(model.ConsultantIds), "Admin cannot be a consultant.");
+        }
+        
+        if (!ModelState.IsValid || ModelState.ErrorCount > 0)
         {
             model.Institutions = await institutionRepository.GetAllInstitutionsAsync();
             model.Clients = await clientRepository.GetAllClientsAsync();
             model.Consultants = await consultantRepository.GetAllConsultantsAsync();
             return View(model);
         }
+
 
         var contract = new Contract
         {
@@ -70,8 +93,9 @@ public class ContractsController(
             Effective = model.EffectiveDate,
             Closed = model.ClosingDate
         };
+        
 
-        await contractRepository.AddInstitutionAsync(contract);
+        await contractRepository.AddContractAsync(contract, model.ConsultantIds);
         return RedirectToAction(nameof(Index));
     }
 }

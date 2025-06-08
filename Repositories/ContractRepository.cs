@@ -12,6 +12,7 @@ public class ContractRepository(AppDbContext context)
             .Include(c => c.Client)
             .Include(c => c.Admin)
             .Include(c => c.Institution)
+            .Include(c => c.Consultants)
             .OrderByDescending(e => e.CreatedAt)
             .AsNoTracking();
     }
@@ -25,10 +26,20 @@ public class ContractRepository(AppDbContext context)
             .Include(c => c.Consultants)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
-
-    public async Task AddInstitutionAsync(Contract contract)
+    
+    public async Task AddContractAsync(Contract contract, IEnumerable<Guid>? consultantIds = null)
     {
+        if (consultantIds != null)
+        {
+            var consultants = await context.Consultants
+                .Where(e => consultantIds.Contains(e.Id) && e.Id != contract.Id)
+                .ToListAsync();
+            
+            contract.Consultants = consultants;
+        }
+
         context.Contracts.Add(contract);
+
         await context.SaveChangesAsync();
     }
 

@@ -28,4 +28,6 @@ public class ContractCreateViewModel
     
     [Required(ErrorMessage = "Closing date is required.")]
     public DateTime ClosingDate { get; set; } = DateTime.Now;
+    
+    public List<Guid> ConsultantIds { get; set; } = [];
 }

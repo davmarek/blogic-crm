@@ -5,16 +5,17 @@
 }
 <h2>Institutions</h2>
 
-<form asp-action="Index" method="post">
+<form asp-action="Index" method="post" class="row gx-3 gy-2 row-cols-md-auto mb-3">
     @Html.AntiForgeryToken()
-    <div class="mb-3">
-        <label asp-for="NewInstitutionName" class="form-label">New institution name</label>
-        <input type="text" asp-for="NewInstitutionName" placeholder="Some institution name..."
+    <div class="col-12">
+        <label asp-for="NewInstitutionName" class="visually-hidden">New institution name</label>
+        <input type="text" asp-for="NewInstitutionName" placeholder="New institution name..."
                class="form-control"/>
         <span asp-validation-for="NewInstitutionName" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Add institution</button>
-
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Add Institution</button>
+    </div>
 </form>
 
 <table class="table">
