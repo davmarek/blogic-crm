@@ -100,7 +100,7 @@ public class ClientsController(ClientRepository repository) : Controller
         existingClient.Birthdate = client.Birthdate;
 
         await repository.UpdateClientAsync(existingClient);
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Show), new { id = existingClient.Id });
     }
 
     [HttpPost, ActionName("Delete")]

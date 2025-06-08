@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogicCRM.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250608154153_Init")]
+    [Migration("20250608204339_Init")]
     partial class Init
     {
         /// <inheritdoc />

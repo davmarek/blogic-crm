@@ -1,17 +1,17 @@
 #!/bin/bash
 
-echo "Removing migrations"
+echo "1. Removing migrations"
 
 rm -r Migrations
 
-echo "Removing database.db"
+echo "2. Removing database.db"
 
 rm database.db
 
-echo "Creating init migration"
+echo "3. Creating init migration"
 
 dotnet ef migrations add Init
 
-echo "Updating db"
+echo "4. Updating db"
 
 dotnet ef database update

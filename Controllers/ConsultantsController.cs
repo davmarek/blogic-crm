@@ -98,7 +98,7 @@ public class ConsultantsController(ConsultantRepository repository) : Controller
         existingConsultant.Birthdate = consultant.Birthdate;
 
         await repository.UpdateConsultantAsync(existingConsultant);
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Show), new { id = existingConsultant.Id });
     }
 
     [HttpPost, ActionName("Delete")]

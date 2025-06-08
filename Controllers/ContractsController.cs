@@ -182,7 +182,7 @@ public class ContractsController(
 
 
         await contractRepository.UpdateContractAsync(existingContract, model.ConsultantIds);
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Show), new { id = existingContract.Id });
     }
 
     [HttpPost, ActionName("Delete")]
