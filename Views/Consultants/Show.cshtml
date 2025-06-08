@@ -12,7 +12,7 @@
     <a asp-controller="Consultants" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
         <i class="fa-solid fa-pen-to-square"></i> Edit
     </a>
-    
+
     <form asp-controller="Consultants" asp-action="Delete" asp-route-id="@Model.Id" class="d-inline" data-confirm-form>
         @Html.AntiForgeryToken()
         <button type="submit" class="btn btn-outline-danger">
@@ -24,22 +24,60 @@
 <dl>
     <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Email)</dt>
     <dd>@Model.Email</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Phone)</dt>
     <dd>@Model.Phone</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Consultant i) => i.BirthNumber)</dt>
     <dd>@Model.BirthNumber</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Birthdate)</dt>
     <dd>@Html.DisplayFor(model => Model.Birthdate)</dd>
-    
+
     <dt>@Html.DisplayNameForInnerType((Consultant i) => i.Age)</dt>
     <dd>@Model.Age</dd>
-    
-    <dt>Number of contracts (as admin)</dt>
-    <dd>@Model.AdministeredContracts.Count</dd>
-    
-    <dt>Number of contracts (as participant)</dt>
-    <dd>@Model.ParticipatingContracts.Count</dd>
+
+
+    <dt>Contracts as admin (@Model.AdministeredContracts.Count)</dt>
+    <dd>
+        @if (Model.AdministeredContracts.Count == 0)
+        {
+            <span class="text-body-secondary">No contracts administered.</span>
+        }
+        else
+        {
+            <ul>
+                @foreach (var contract in Model.AdministeredContracts)
+                {
+                    <li>
+                        <a asp-controller="Contracts" asp-action="Show" asp-route-id="@contract.Id">
+                            @contract.ShortId | @Html.DisplayFor(model => contract.Created) - @Html.DisplayFor(model => contract.Effective) - @Html.DisplayFor(model => contract.Closed)
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </dd>
+
+    <dt>Contracts as participant (@Model.ParticipatingContracts.Count)</dt>
+    <dd>
+        @if (Model.ParticipatingContracts.Count == 0)
+        {
+            <span class="text-body-secondary">No contracts participating.</span>
+        }
+        else
+        {
+            <ul>
+                @foreach (var contract in Model.ParticipatingContracts)
+                {
+                    <li>
+                        <a asp-controller="Contracts" asp-action="Show" asp-route-id="@contract.Id">
+                            @contract.ShortId | @Html.DisplayFor(model => contract.Created) - @Html.DisplayFor(model => contract.Effective) - @Html.DisplayFor(model => contract.Closed)
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </dd>
+
 </dl>

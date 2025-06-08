@@ -36,7 +36,26 @@
     <dt>@Html.DisplayNameForInnerType((Client i) => i.Age)</dt>
     <dd>@Model.Age</dd>
 
-    <dt>Number of contracts</dt>
-    <dd>@Model.Contracts.Count</dd>
+    <dt>Contracts (@Model.Contracts.Count)</dt>
+    <dd>
+        @if (Model.Contracts.Count == 0)
+        {
+            <span class="text-body-secondary">No contracts administered.</span>
+        }
+        else
+        {
+            <ul>
+                @foreach (var contract in Model.Contracts)
+                {
+                    <li>
+                        <a asp-controller="Contracts" asp-action="Show" asp-route-id="@contract.Id">
+                            @contract.ShortId | @Html.DisplayFor(model => contract.Created) - @Html.DisplayFor(model => contract.Effective) - @Html.DisplayFor(model => contract.Closed)
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </dd>
+    
 </dl>
 
